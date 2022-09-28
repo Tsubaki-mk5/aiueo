@@ -1,6 +1,5 @@
 #pragma once
 #include"../Base/Base.h"
-#include "../Game/Bullet.h"
 std::list<Base*> Base::m_list;
 CVector2D Base::m_scroll(0, 0);
 Base::Base(int type) : m_type(type), m_kill(false), m_vec(0, 0), m_rad(0) {
