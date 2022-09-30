@@ -5,6 +5,7 @@
 
 #include "Game/AnimData.h"
 #include "Base/Base.h"
+#include"Game/Player.h"
 #include "Game/BOSS.h"
 //#include "Title/Title.h"
 
@@ -63,7 +64,9 @@ void Init(void)
 	//-----------------------------------------------------
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_wait.png", Boss_anim_data, 256, 256));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_attack.png", Boss_anim_data, 256, 256));
-	Base::Add(new Boss(CVector2D(800, 500), true));
+	ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 64, 64));
+	Base::Add(new Player(CVector2D(200,200),true));
+	//Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());
 
 

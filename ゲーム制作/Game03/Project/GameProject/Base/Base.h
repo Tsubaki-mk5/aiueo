@@ -1,5 +1,6 @@
 #pragma once
 #include<GLLibrary.h>
+#define GRAVITY (9.8f/20)
 enum {
 	eType_Field,
 	eType_UI,
