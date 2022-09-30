@@ -63,6 +63,7 @@ void Init(void)
 	//-----------------------------------------------------
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_wait.png", Boss_anim_data, 96, 96));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_attack.png", Boss_anim_data, 96, 96));
+	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_damage.png", Boss_anim_data, 96, 96));
 	Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());
 

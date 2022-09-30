@@ -1,15 +1,14 @@
 #include "Boss.h"
 #include "AnimData.h"
 static TexAnim BossIdle[] = {
-	{ 0,5 },
-	{ 1,5 },
-	{ 2,5 },
-	{ 3,5 },
-	{ 4,5 },
-	{ 5,5 },
-	{ 6,5 },
-	{ 7,5 },
-	{ 8,5 },
+	{ 0,8 },
+	{ 1,8 },
+	{ 2,8 },
+	{ 3,8 },
+	{ 4,8 },
+	{ 5,8 },
+	{ 6,8 },
+	{ 7,8 },
 };
 
 static TexAnim BossAttack[] = {
@@ -19,9 +18,15 @@ static TexAnim BossAttack[] = {
 	{ 3,10 },
 	{ 4,10 },
 };
+static TexAnim BossDamage[] = {
+	{ 0,2 },
+	{ 1,2 },
+	{ 2,2 },
+};
 TexAnimData Boss_anim_data[] = {
 	ANIMDATA(BossIdle),
 	ANIMDATA(BossAttack),
+	ANIMDATA(BossDamage),
 };
 Boss::Boss(const CVector2D& p, bool flip) : Base(e_Type_Boss) {
 	m_img = COPY_RESOURCE("Boss", CImage);
@@ -35,13 +40,21 @@ void Boss::StateIdle()
 {
 	const float move_speed = 6;
 	bool move_flag = false;
+	Base* player = Base::FindObject(eType_Player);
+	
+	/*if (player->m_pos.x < m_pos.x - 64) {
+		m_pos.x += -move_speed;
+		m_flip = true;
+		move_flag = true;
+	}
+	if (player->m_pos.x > m_pos.x + 64) {
+		m_flip = false;
+		move_flag = true;
+	}
+	*/
 }
 void Boss::StateAttack()
 {
-	m_img.ChangeAnimation(eAnimAttack01, false);
-	if (m_img.CheckAnimationEnd()) {
-		m_state = eState_Idle;
-	}
 }
 void Boss::StateDamage()
 {
@@ -55,7 +68,20 @@ void Boss::StateDown()
 }
 void Boss::Update()
 {
-	m_img.ChangeAnimation(eAnimIdle);
+	switch (m_state) {
+	case eState_Idle:
+		StateIdle();
+		break;
+	case eState_Attack:
+		StateAttack();
+		break;
+	case eState_Damage:
+		StateDamage();
+		break;
+	case eState_Down:
+		StateDown();
+		break;
+	}
 	m_img.UpdateAnimation();
 }
 
