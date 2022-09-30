@@ -431,26 +431,3 @@ TexAnimData effect_slash_anim_data[] = {
 	ANIMDATA(_effect_slash),
 };
 
-static TexAnim BossIdle[] = {
-	{ 0,5 },
-	{ 1,5 },
-	{ 2,5 },
-	{ 3,5 },
-	{ 4,5 },
-	{ 5,5 },
-	{ 6,5 },
-	{ 7,5 },
-	{ 8,5 },
-};
-
-static TexAnim BossAttack[] = {
-	{ 0,5 },
-	{ 1,5 },
-	{ 2,5 },
-	{ 3,5 },
-	{ 4,5 },
-};
-TexAnimData Boss_anim_data[] = {
-	ANIMDATA(BossIdle),
-	ANIMDATA(BossAttack),
-};

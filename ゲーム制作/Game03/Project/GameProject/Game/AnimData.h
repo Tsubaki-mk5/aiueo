@@ -29,8 +29,6 @@ enum  {
 	eAnimExtAttack02End,
 	eAnimStep,
 };
-//ボスのアニメーションデータ
-extern TexAnimData Boss_anim_data[];
 //プレイヤーのアニメーションデータ
 extern TexAnimData player_anim_data[];
 //敵のアニメーションデータ
