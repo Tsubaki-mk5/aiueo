@@ -8,7 +8,7 @@
     <ClCompile Include="Base\Base.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Boss.cpp">
+    <ClCompile Include="Game\BOSS.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,7 +30,7 @@
     <ClInclude Include="Base\Base.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Boss.h">
+    <ClInclude Include="Game\BOSS.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
