@@ -441,7 +441,6 @@ static TexAnim BossIdle[] = {
 	{ 6,5 },
 	{ 7,5 },
 	{ 8,5 },
-
 };
 
 static TexAnim BossAttack[] = {
