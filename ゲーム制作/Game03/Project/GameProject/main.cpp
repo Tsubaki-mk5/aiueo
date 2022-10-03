@@ -6,6 +6,7 @@
 #include "Game/AnimData.h"
 #include "Base/Base.h"
 #include "Game/BOSS.h"
+#include "Game/Field.h"
 //#include "Title/Title.h"
 
 
@@ -61,13 +62,13 @@ void Init(void)
 	//‰Šú‰»‚Ì–½—ß‚ğ‘‚­
 	//ƒQ[ƒ€‹N“®‚Éˆê“x‚¾‚¯ŒÄ‚Î‚ê‚é
 	//-----------------------------------------------------
-	ADD_RESOURCE("DOUKUTSU", CImage::CreateImage("Image/Dungeon.png"));
+	ADD_RESOURCE("DOUKUTSU", CImage::CreateImage("Image/DOUKUTSU.png"));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_wait.png", Boss_anim_data, 96, 96));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_attack.png", Boss_anim_data, 96, 96));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_damage.png", Boss_anim_data, 96, 96));
 	Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());
-
+	Base::Add(new Field());
 
 
 

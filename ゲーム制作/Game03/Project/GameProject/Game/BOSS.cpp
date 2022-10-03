@@ -28,7 +28,7 @@ TexAnimData Boss_anim_data[] = {
 	ANIMDATA(BossAttack),
 	ANIMDATA(BossDamage),
 };
-Boss::Boss(const CVector2D& p, bool flip) : Base(e_Type_Boss) {
+Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_img = COPY_RESOURCE("Boss", CImage);
 	m_img.ChangeAnimation(0);
 	m_pos = p;

@@ -1,6 +1,7 @@
 #include "Field.h"
 
 Field::Field() :Base(eType_Field) {
+
 	m_DOUKUTSU = COPY_RESOURCE("DOUKUTSU", CImage);
 
 }

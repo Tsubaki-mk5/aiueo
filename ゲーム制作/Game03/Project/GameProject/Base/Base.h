@@ -5,7 +5,7 @@ enum {
 	eType_UI,
 	eType_Player,
 	eType_Enemy,
-	e_Type_Boss,
+	eType_Boss,
 	eType_Rock,
 	eType_Bullet,
 	eType_Player_Bullet,
