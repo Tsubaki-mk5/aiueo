@@ -5,7 +5,8 @@ private:
 	//ó‘Ô
 	enum {
 		eState_Idle,
-		eState_Attack,
+		eState_Attack_Sword,
+		eState_Attack_Arrow,
 		eState_Damage,
 		eState_Down,
 	};
@@ -25,7 +26,8 @@ private:
 	CImage m_img;
 	//Šeó‘Ô‚Å‚Ì‹““®
 	void StateIdle();
-	void StateAttack();
+	void StateAttackSword();
+	void StateAttackArrow();
 	void StateDamage();
 	void StateDown();
 public:

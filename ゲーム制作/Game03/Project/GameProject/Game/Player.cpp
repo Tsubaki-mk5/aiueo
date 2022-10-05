@@ -1,4 +1,7 @@
 #include"Player.h"
+#include"Field.h"
+#include"Sword.h"
+#include"Arrow.h"
 #include"AnimData.h"
 
 Player::Player(const CVector2D& p, bool flip) :
@@ -10,7 +13,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//座標設定
 	m_pos = p;
 	//中心位置設定
-	m_img.SetCenter(128, 224);
+	m_img.SetCenter(32, 32);
 	//反転フラグ
 	m_flip = flip;
 	//通常状態へ
@@ -22,7 +25,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//ダメージ番号
 	m_damage_no = -1;
 	//当たり判定矩形
-	m_rect = CRect(-32, -128, 32, 0);
+	m_rect = CRect(-32, -32, 32, 0);
 	//ヒットポイント
 	m_hp = 150;
 }
@@ -49,10 +52,15 @@ void Player::StateIdle() {
 		m_flip = false;
 		move_flag = true;
 	}
-	//攻撃
+	//攻撃1
 	if (PUSH(CInput::eButton1)) {
 		//攻撃状態へ移行
-		m_state = eState_Attack;
+		m_state = eState_Attack_Sword;
+		m_attack_no++;
+	}
+	//攻撃2
+	if (PUSH(CInput::eButton2)) {
+		m_state = eState_Attack_Arrow;
 		m_attack_no++;
 	}
 	//ジャンプ
@@ -80,17 +88,18 @@ void Player::StateIdle() {
 		}
 	}
 }
-void Player::StateAttack()
+
+void Player::StateAttackSword()
 {
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack01, false);
 	//3番目のパターンなら
 	if (m_img.GetIndex() == 3) {
 		if (m_flip) {
-			Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Player_Attack, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(-64, -64), m_flip, eType_Sword, m_attack_no));
 		}
 		else {
-			Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Player_Attack, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(64, -64), m_flip, eType_Sword, m_attack_no));
 		}
 	}
 	//アニメーションが終了したら
@@ -99,16 +108,30 @@ void Player::StateAttack()
 		m_state = eState_Idle;
 	}
 }
+
+void Player::StateAttackArrow()
+{
+	//攻撃アニメーションへ変更
+	m_img.ChangeAnimation(eAnimAttack02, false);
+	Base::Add(new Arrow(m_pos, m_flip,m_attack_no));
+
+	//アニメーションが終了したら
+	if (m_img.CheckAnimationEnd()) {
+		//通常状態へ移行
+		m_state = eState_Idle;
+	}
+}
+
 void Player::StateDamage() {
 	m_img.ChangeAnimation(eAnimDamage, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
 }
+
 void Player::StateDown() {
 	m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
-		Base::Add(new Effect("Effect_Smoke", m_pos + CVector2D(0, 0), m_flip));
 		m_kill = true;
 	}
 }
@@ -118,8 +141,11 @@ void Player::Update() {
 	case eState_Idle:
 		StateIdle();
 		break;
-	case eState_Attack:
-		StateAttack();
+	case eState_Attack_Sword:
+		StateAttackSword();
+		break;
+	case eState_Attack_Arrow:
+		StateAttackArrow();
 		break;
 	case eState_Damage:
 		StateDamage();
@@ -151,13 +177,14 @@ void Player::Collision(Base* b)
 {
 	switch (b->m_type) {
 		//ゴール判定
-	case eType_Goal:
+	/*case eType_Goal:
 		if (Base::CollisionRect(this, b)) {
 			b->SetKill();
 		}
 		break;
+		*/
 		//攻撃オブジェクトとの判定
-	case eType_Enemy_Attack:
+	/*case eType_Enemy_Attack:
 		if (Slash* s = dynamic_cast<Slash*>(b)) {
 			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
 				//同じ攻撃の連続ダメージ防止
@@ -173,6 +200,7 @@ void Player::Collision(Base* b)
 			}
 		}
 		break;
+		*/
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
 		if (Field* f = dynamic_cast<Field*>(b)) {
