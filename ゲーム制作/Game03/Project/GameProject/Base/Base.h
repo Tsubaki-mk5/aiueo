@@ -11,6 +11,8 @@ enum {
 	eType_Player_Bullet,
 	eType_Enemy_Bullet, 
 	eType_Effect,
+	eType_Bow,
+	eType_Arrow,
 	eType_Scene,
 };
 #define GRAVITY (9.8/20)
