@@ -1,5 +1,7 @@
 #include "Boss.h"
 #include "AnimData.h"
+#include "Field.h"
+
 static TexAnim BossIdle[] = {
 	{ 0,8 },
 	{ 1,8 },
@@ -33,6 +35,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_pos = p;
 	m_img.SetCenter(128, 244);
 	m_flip = flip;
+	m_is_ground = false;
 	m_state = eState_Idle;
 }
 void Boss::StateIdle()
@@ -82,6 +85,9 @@ void Boss::Update()
 		break;
 	}
 	m_img.UpdateAnimation();
+
+	m_vec.y += GRAVITY;
+	m_pos += m_vec;
 }
 
 void Boss::Draw()
@@ -93,4 +99,15 @@ void Boss::Draw()
 
 void Boss::Collision(Base* b)
 {
+	switch (b->m_type) {
+	case eType_Field:
+		if (Field* f = dynamic_cast<Field*>(b)) {
+			if (m_pos.y > f->GetGroundY()) {
+				m_pos.y = f->GetGroundY();
+				m_vec.y = 0;
+				m_is_ground = true;
+			}
+		}
+		break;
+	}
 }

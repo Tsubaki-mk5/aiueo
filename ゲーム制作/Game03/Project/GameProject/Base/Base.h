@@ -13,7 +13,7 @@ enum {
 	eType_Effect,
 	eType_Scene,
 };
-
+#define GRAVITY (9.8/20)
 class Base {
 public:
 	int m_type;
