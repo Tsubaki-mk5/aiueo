@@ -64,9 +64,7 @@ void Init(void)
 	//ƒQ[ƒ€‹N“®‚Éˆê“x‚¾‚¯ŒÄ‚Î‚ê‚é
 	//-----------------------------------------------------
 	ADD_RESOURCE("DOUKUTSU", CImage::CreateImage("Image/DOUKUTSU.png"));
-	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_wait.png", Boss_anim_data, 150, 150));
-	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_attack.png", Boss_anim_data, 150, 150));
-	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Dragon2B_damage.png", Boss_anim_data, 150, 150));
+	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Boldarch.png", Boss_anim_data, 104, 105));
 	Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
