@@ -14,6 +14,7 @@
     <ClCompile Include="Base\Base.cpp" />
     <ClCompile Include="Game\AnimData.cpp" />
     <ClCompile Include="Game\BOSS.cpp" />
+    <ClCompile Include="Game\Enemy.cpp" />
     <ClCompile Include="Game\Field.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -21,6 +22,7 @@
     <ClInclude Include="Base\Base.h" />
     <ClInclude Include="Game\AnimData.h" />
     <ClInclude Include="Game\BOSS.h" />
+    <ClInclude Include="Game\Enemy.h" />
     <ClInclude Include="Game\Field.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

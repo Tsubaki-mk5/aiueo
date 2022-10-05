@@ -7,6 +7,7 @@
 #include "Base/Base.h"
 #include "Game/BOSS.h"
 #include "Game/Field.h"
+#include "Game/Enemy.h"
 //#include "Title/Title.h"
 
 
@@ -69,7 +70,7 @@ void Init(void)
 	Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
-
+	Base::Add(new Enemy(CVector2D(1200, 500), true));
 
 
 }

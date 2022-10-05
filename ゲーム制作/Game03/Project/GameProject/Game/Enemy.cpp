@@ -1,0 +1,141 @@
+#include "Enemy.h"
+//#include "Player.h"
+//#include "Field.h"
+//#include "Slash.h"
+//#include "Effect.h"
+#include "AnimData.h"
+
+Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
+	//画像複製
+	m_img.Load("Image/Enemy1.png", enemy_anim_data, 96, 96);
+	m_rad = 16;
+	m_img.SetSize(150, 150);
+	//再生アニメーション設定
+	m_img.ChangeAnimation(0);
+	//座標設定
+	m_pos = p;
+	//中心位置設定
+	m_img.SetCenter(75, 75);
+	//当たり判定用矩形設定
+	m_rect = CRect(-32, -128, 32, 0);
+	//反転フラグ
+	m_flip = flip;
+
+	//通常状態へ
+	m_state = eState_Idle;
+
+	//着地フラグ
+	m_is_ground = true;
+	//攻撃番号
+	m_attack_no = rand();
+	//ダメージ番号
+	m_damage_no = -1;
+	//ヒットポイント
+	m_hp = 100;
+
+}
+
+void Enemy::StateIdle() {
+
+	//移動量
+	const float move_speed = 6;
+	//移動フラグ
+	bool move_flag = false;
+	//ジャンプ力
+	const float jump_pow = 12;
+	//プレイヤーを探索
+	Base* player = Base::FindObject(eType_Player);
+
+	if (player) {
+
+		//左移動
+		if (player->m_pos.x < m_pos.x - 64) {
+
+			//移動量を設定
+			m_pos.x += -move_speed;
+			//反転フラグ
+			m_flip = true;
+			move_flag = true;
+		}
+		//右移動
+		if (player->m_pos.x > m_pos.x + 64) {
+
+			//移動量を設定
+			m_pos.x += move_speed;
+			//反転フラグ
+			m_flip = false;
+			move_flag = true;
+		}
+		else {
+			//攻撃状態へ移行
+			m_state = eState_Attack;
+			m_attack_no++;
+		}
+	}
+
+	if (move_flag) {
+		//走るアニメーション
+		m_img.ChangeAnimation(eAnimRun);
+	}
+	else {
+		//待機アニメーション
+		m_img.ChangeAnimation(eAnimIdle);
+	}
+	//カウント0で待機状態へ
+	if (--m_cnt <= 0) {
+		//待機時間3秒～5秒
+		m_cnt = rand() % 120 + 180;
+		m_state = eState_Wait;
+	}
+
+
+}
+
+void Enemy::StateWait() {
+	//待機アニメーション
+	m_img.ChangeAnimation(eAnimIdle);
+	//カウント0で通常状態へ
+	if (--m_cnt <= 0) {
+		//待機時間3秒～5秒
+		m_cnt = rand() % 120 + 180;
+		m_state = eState_Idle;
+	}
+}
+
+
+void Enemy::Update() {
+
+	switch (m_state) {
+		//通常状態
+	case eState_Idle:
+		StateIdle();
+		break;
+
+	}
+	//落ちていたら落下中状態へ移行
+
+	m_pos += m_vec;
+
+	//アニメーション更新
+	m_img.UpdateAnimation();
+	//スクロール設定
+//	m_scroll.x;
+	m_img.ChangeAnimation(eAnimIdle);
+
+}
+
+void Enemy::Draw() {
+	//位置設定
+	m_img.SetPos((m_pos));
+	//反転設定
+	m_img.SetFlipH(m_flip);
+	//描画
+	m_img.Draw();
+	//当たり判定矩形の表示
+	//DrawRect();
+}
+
+void Enemy::Collision(Base* b)
+{
+
+}
