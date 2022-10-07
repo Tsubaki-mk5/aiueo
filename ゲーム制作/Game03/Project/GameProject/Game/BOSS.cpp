@@ -41,20 +41,20 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 }
 void Boss::StateIdle()
 {
-	const float move_speed = 6;
+	const float move_speed = 0;
 	bool move_flag = false;
 	Base* player = Base::FindObject(eType_Player);
 	
-	/*if (player->m_pos.x < m_pos.x - 64) {
+	if (player->m_pos.x < m_pos.x - 64) {
 		m_pos.x += -move_speed;
-		m_flip = true;
-		move_flag = true;
-	}
-	if (player->m_pos.x > m_pos.x + 64) {
 		m_flip = false;
 		move_flag = true;
 	}
-	*/
+	if (player->m_pos.x > m_pos.x + 64) {
+		m_flip = true;
+		move_flag = true;
+	}
+	
 }
 void Boss::StateAttack()
 {
