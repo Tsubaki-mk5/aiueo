@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include "Player.h"
+//#include "Player.h"
 #include "Field.h"
 //#include "Slash.h"
 //#include "Effect.h"
@@ -11,7 +11,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
 	m_rad = 16;
 	m_img.SetSize(150, 150);
 	//再生アニメーション設定
-	m_img.ChangeAnimation(10);
+	m_img.ChangeAnimation(0);
 	//座標設定
 	m_pos = p;
 	//中心位置設定
@@ -37,9 +37,13 @@ Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
 
 void Enemy::StateIdle() {
 
-	const float move_speed = 4;
+	//移動量
+	const float move_speed = 6;
+	//移動フラグ
 	bool move_flag = false;
+	//ジャンプ力
 	const float jump_pow = 12;
+	//プレイヤーを探索
 	Base* player = Base::FindObject(eType_Player);
 
 	if (player) {
@@ -61,15 +65,13 @@ void Enemy::StateIdle() {
 			//反転フラグ
 			m_flip = false;
 			move_flag = true;
-		}/*
+		}
 		else {
 			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;
 		}
-		*/
 	}
-
 
 	if (move_flag) {
 		//走るアニメーション
@@ -79,14 +81,13 @@ void Enemy::StateIdle() {
 		//待機アニメーション
 		m_img.ChangeAnimation(eAnimIdle);
 	}
-	/*
 	//カウント0で待機状態へ
 	if (--m_cnt <= 0) {
 		//待機時間3秒～5秒
 		m_cnt = rand() % 120 + 180;
 		m_state = eState_Wait;
 	}
-	*/
+
 
 }
 
@@ -115,21 +116,21 @@ void Enemy::Update() {
 	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
 	//重力による落下
-	m_vec.y += GRAVITY;
+//	m_vec.y += GRAVITY;
 	m_pos += m_vec;
 
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
 	//スクロール設定
-	m_scroll.x;
+//	m_scroll.x;
 	m_img.ChangeAnimation(eAnimIdle);
 
 }
 
 void Enemy::Draw() {
 	//位置設定
-	m_img.SetPos(GetScreenPos(m_pos));
+	m_img.SetPos((m_pos));
 	//反転設定
 	m_img.SetFlipH(m_flip);
 	//描画
@@ -145,20 +146,6 @@ void Enemy::Draw() {
 
 void Enemy::Collision(Base* b)
 {
-	switch (b->m_type) {
-	case eType_Field:
-		//Field型へキャスト、型変換できたら
-		if (Field* f = dynamic_cast<Field*>(b)) {
-			//地面より下にいったら
-			if (m_pos.y > f->GetGroundY()) {
-				//地面の高さに戻す
-				m_pos.y = f->GetGroundY();
-				//落下速度リセット
-				m_vec.y = 0;
-				//接地フラグON
-				m_is_ground = true;
-			}
-		}
-		break;
-	}
+	
+
 }
