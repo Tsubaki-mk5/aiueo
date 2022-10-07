@@ -20,9 +20,9 @@ static TexAnim BossAttack[] = {
 	{ 11,10 },
 };
 static TexAnim BossDamage[] = {
-	{ 12,2 },
-	{ 13,2 },
-	{ 14,2 },
+	{ 12,5 },
+	{ 13,5 },
+	{ 14,5 },
 };
 TexAnimData Boss_anim_data[] = {
 	ANIMDATA(BossIdle),
