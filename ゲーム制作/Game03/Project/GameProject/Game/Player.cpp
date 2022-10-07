@@ -6,50 +6,32 @@
 #include "Field.h"
 
 static TexAnim playerIdle[] = {
-	{ 0,2 },
-	{ 1,2 },
-	{ 2,2 },
-	{ 3,2 },
-	{ 4,2 },
-	{ 5,2 },
-	{ 6,2 },
-	{ 7,2 },
-	{ 8,2 },
-	{ 9,2 },
-	{ 10,2 },
-	{ 11,2 },
-	{ 12,2 },
-	{ 13,2 },
-	{ 14,2 },
+	{ 8,8 },
 };
 static TexAnim playerRun[] = {
-	{ 16,2 },
-	{ 17,2 },
-	{ 18,2 },
-	{ 19,2 },
-	{ 20,2 },
-	{ 21,2 },
-	{ 22,2 },
-	{ 23,2 },
-	{ 24,2 },
-	{ 25,2 },
-	{ 26,2 },
-	{ 27,2 },
-	{ 28,2 },
-	{ 29,2 },
-	{ 30,2 },
+	/*{3,4},
+	{ 4,4 },
+	{ 5,4 },
+	{ 6,4 },
+	{ 7,4 },
+	{ 8,4 },
+	{ 9,4 },
+	{ 10,4 },
+	{ 11,4 },
+	{ 12,4 },*/
+	{ 12,7 },
+	{ 13,7 },
+	{ 14,7 },
+	{ 15,7 },
 };
 static TexAnim playerJumpUp[] = {
-	{ 32,4 },
-	{ 33,4 },
-	{ 34,4 },
-
+	{ 0,4 },
+	{ 1,4 },
+	{ 2,4 },
 };
 static TexAnim playerJumpDown[] = {
-	{ 36,4 },
-	{ 37,4 },
-	{ 38,4 },
-
+	{ 3,4 },
+	{ 3,4 },
 };
 static TexAnim playerAttack01[] = {
 	{ 40,3 },
@@ -139,8 +121,8 @@ Player::Player(const CVector2D& p, bool flip) :
 
 void Player::StateIdle() {
 
-	const float move_speed = 6;
-	const float jump_pow = 12;
+	const float move_speed = 4;
+	const float jump_pow = 10;
 	bool move_flag = false;
 
 	if (HOLD(CInput::eLeft)) {
