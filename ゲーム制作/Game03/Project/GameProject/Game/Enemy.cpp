@@ -1,6 +1,6 @@
 #include "Enemy.h"
 //#include "Player.h"
-//#include "Field.h"
+#include "Field.h"
 //#include "Slash.h"
 //#include "Effect.h"
 #include "AnimData.h"
@@ -113,8 +113,12 @@ void Enemy::Update() {
 
 	}
 	//落ちていたら落下中状態へ移行
-
+	if (m_is_ground && m_vec.y > GRAVITY * 4)
+		m_is_ground = false;
+	//重力による落下
+//	m_vec.y += GRAVITY;
 	m_pos += m_vec;
+
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
@@ -133,9 +137,15 @@ void Enemy::Draw() {
 	m_img.Draw();
 	//当たり判定矩形の表示
 	//DrawRect();
+	m_gauge.HpMax = 1000;
+	m_gauge.NowHp = m_hp;
+	m_gauge.Width = 200;
+	m_gauge.m_pos = m_pos;
+	m_gauge.Draw();
 }
 
 void Enemy::Collision(Base* b)
 {
+	
 
 }
