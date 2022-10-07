@@ -10,6 +10,6 @@ void HP::Draw() {
 	float s = Width * NowHp / HpMax;
 
 	m_img.SetPos(m_pos);
-	m_img.SetSize(110, 50);
+	m_img.SetSize(110, 40);
 	m_img.Draw();
 }
