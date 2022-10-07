@@ -7,17 +7,22 @@ enum {
 	eType_Player,
 	eType_Enemy,
 	eType_Boss,
-	eType_Rock,
 	eType_Bullet,
-	eType_Player_Bullet,
+	eType_Sword,
 	eType_Enemy_Bullet, 
 	eType_Effect,
+	eType_Bow,
+	eType_Arrow,
 	eType_Scene,
 };
+<<<<<<< HEAD
 
 //d—Í‰Á‘¬“x
 #define GRAVITY	(9.8f/20)
 
+=======
+#define GRAVITY (9.8/20)
+>>>>>>> 327ba10c7cdadc7801302b74392ec5b1783dccf1
 class Base {
 public:
 	int m_type;

@@ -1,5 +1,7 @@
 #include "Boss.h"
 #include "AnimData.h"
+#include "Field.h"
+
 static TexAnim BossIdle[] = {
 	{ 0,8 },
 	{ 1,8 },
@@ -12,16 +14,15 @@ static TexAnim BossIdle[] = {
 };
 
 static TexAnim BossAttack[] = {
-	{ 0,10 },
-	{ 1,10 },
-	{ 2,10 },
-	{ 3,10 },
-	{ 4,10 },
+	{ 8,10 },
+	{ 9,10 },
+	{ 10,10 },
+	{ 11,10 },
 };
 static TexAnim BossDamage[] = {
-	{ 0,2 },
-	{ 1,2 },
-	{ 2,2 },
+	{ 12,5 },
+	{ 13,5 },
+	{ 14,5 },
 };
 TexAnimData Boss_anim_data[] = {
 	ANIMDATA(BossIdle),
@@ -33,7 +34,9 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_img.ChangeAnimation(0);
 	m_pos = p;
 	m_img.SetCenter(128, 244);
+	m_rect = CRect(-32, -128, 32, 0);
 	m_flip = flip;
+	m_is_ground = false;
 	m_state = eState_Idle;
 }
 void Boss::StateIdle()
@@ -65,6 +68,18 @@ void Boss::StateDamage()
 }
 void Boss::StateDown()
 {
+	if (--m_cnt <= 0) {
+		m_cnt = rand() % 120 + 180;
+		m_state = eState_Wait;
+	}
+}
+void Boss::StateWait()
+{
+	m_img.ChangeAnimation(eAnimIdle);
+	if (--m_cnt <= 0) {
+		m_cnt = rand() % 120 + 180;
+		m_state = eState_Idle;
+	}
 }
 void Boss::Update()
 {
@@ -83,15 +98,30 @@ void Boss::Update()
 		break;
 	}
 	m_img.UpdateAnimation();
+
+	m_vec.y += GRAVITY;
+	m_pos += m_vec;
 }
 
 void Boss::Draw()
 {
-	m_img.SetPos(m_pos);
+	m_img.SetPos(GetScreenPos(m_pos));
 	m_img.SetFlipH(m_flip);
 	m_img.Draw();
+	DrawRect();
 }
 
 void Boss::Collision(Base* b)
 {
+	switch (b->m_type) {
+	case eType_Field:
+		if (Field* f = dynamic_cast<Field*>(b)) {
+			if (m_pos.y > f->GetGroundY()) {
+				m_pos.y = f->GetGroundY();
+				m_vec.y = 0;
+				m_is_ground = true;
+			}
+		}
+		break;
+	}
 }
