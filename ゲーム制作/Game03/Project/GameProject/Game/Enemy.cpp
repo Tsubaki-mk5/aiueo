@@ -1,5 +1,5 @@
 #include "Enemy.h"
-//#include "Player.h"
+#include "Player.h"
 #include "Field.h"
 //#include "Slash.h"
 //#include "Effect.h"
@@ -58,21 +58,23 @@ void Enemy::StateIdle() {
 			//反転フラグ
 			m_flip = false;
 			move_flag = true;
-		}/*
+		}
+		
 		else {
 			//攻撃状態へ移行
+			if (player->m_pos.x < m_pos.x + 1)
 			m_state = eState_Attack;
 			m_attack_no++;
-		}*/
+		}
 	}
 
 	if (move_flag) {
 		//走るアニメーション
-		m_img.ChangeAnimation(eAnimRun);
+		m_img.ChangeAnimation(eAnimRun, false);
 	}
 	else {
 		//待機アニメーション
-		m_img.ChangeAnimation(eAnimIdle);
+		m_img.ChangeAnimation(eAnimIdle, false);
 	}
 	/*
 	//カウント0で待機状態へ
@@ -83,6 +85,10 @@ void Enemy::StateIdle() {
 	}
 	*/
 
+}
+
+void StateAttack() {
+	
 }
 
 void Enemy::StateWait() {
