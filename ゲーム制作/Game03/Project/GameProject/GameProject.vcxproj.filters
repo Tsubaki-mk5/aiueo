@@ -17,9 +17,9 @@
     <ClCompile Include="Game\Enemy.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Game\HP.cpp">
-=======
+		<Filter>Game</Filter>
+	</ClCompile>
     <ClCompile Include="Game\Arrow.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -42,7 +42,6 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\Effect.cpp">
->>>>>>> 327ba10c7cdadc7801302b74392ec5b1783dccf1
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>

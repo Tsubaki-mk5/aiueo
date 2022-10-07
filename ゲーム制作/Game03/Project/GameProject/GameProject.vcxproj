@@ -19,12 +19,9 @@
     <ClCompile Include="Game\Effect.cpp" />
     <ClCompile Include="Game\Enemy.cpp" />
     <ClCompile Include="Game\Field.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Game\HP.cpp" />
-=======
     <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="Game\Sword.cpp" />
->>>>>>> 327ba10c7cdadc7801302b74392ec5b1783dccf1
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -36,12 +33,9 @@
     <ClInclude Include="Game\Effect.h" />
     <ClInclude Include="Game\Enemy.h" />
     <ClInclude Include="Game\Field.h" />
-<<<<<<< HEAD
     <ClInclude Include="Game\HP.h" />
-=======
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\Sword.h" />
->>>>>>> 327ba10c7cdadc7801302b74392ec5b1783dccf1
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FE2CE3B1-49BF-46A5-9DB1-9BD5B52FE1A0}</ProjectGuid>

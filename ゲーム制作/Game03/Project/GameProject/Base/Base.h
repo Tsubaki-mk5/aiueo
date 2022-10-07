@@ -15,14 +15,8 @@ enum {
 	eType_Arrow,
 	eType_Scene,
 };
-<<<<<<< HEAD
-
 //d—Í‰Á‘¬“x
 #define GRAVITY	(9.8f/20)
-
-=======
-#define GRAVITY (9.8/20)
->>>>>>> 327ba10c7cdadc7801302b74392ec5b1783dccf1
 class Base {
 public:
 	int m_type;
