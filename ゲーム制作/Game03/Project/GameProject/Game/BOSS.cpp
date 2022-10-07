@@ -33,7 +33,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_img = COPY_RESOURCE("Boss", CImage);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
-	m_img.SetCenter(128, 244);
+	m_img.SetCenter(75,75 );
 	m_rect = CRect(-32, -128, 32, 0);
 	m_flip = flip;
 	m_is_ground = false;
