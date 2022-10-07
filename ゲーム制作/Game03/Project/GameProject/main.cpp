@@ -5,6 +5,7 @@
 
 #include "Game/AnimData.h"
 #include "Base/Base.h"
+#include"Game/Player.h"
 #include "Game/BOSS.h"
 #include "Game/Field.h"
 #include "Game/Enemy.h"
@@ -65,6 +66,9 @@ void Init(void)
 	//-----------------------------------------------------
 	ADD_RESOURCE("DOUKUTSU", CImage::CreateImage("Image/DOUKUTSU.png"));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Boldarch.png", Boss_anim_data, 104, 105));
+	ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 64, 64));
+
+	Base::Add(new Player(CVector2D(200, 500), true));
 	Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
