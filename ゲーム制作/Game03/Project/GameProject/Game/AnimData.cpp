@@ -225,10 +225,10 @@ TexAnimData player_anim_data[] = {
 };
 
 static TexAnim enemyIdle[] = {
-	{ 0,6 },
-	{ 1,6 },
-	{ 2,6 },
-	{ 3,6 },
+	{ 0,8 },
+	{ 1,8 },
+	{ 2,8 },
+	{ 3,8 },
 };
 static TexAnim enemyRun[] = {
 	{ 9,6 },

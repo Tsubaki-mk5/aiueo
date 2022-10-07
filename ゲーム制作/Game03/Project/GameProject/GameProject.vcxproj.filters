@@ -17,6 +17,9 @@
     <ClCompile Include="Game\Enemy.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game\HP.cpp">
+		<Filter>Game</Filter>
+	</ClCompile>
     <ClCompile Include="Game\Arrow.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -63,10 +66,13 @@
     <ClInclude Include="Game\BOSS.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy.h">
+      <Filter>Game</Filter>
+    </ClInclude>
     <ClInclude Include="Game\Field.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy.h">
+    <ClInclude Include="Game\HP.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Arrow.h">

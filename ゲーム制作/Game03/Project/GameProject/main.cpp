@@ -10,7 +10,7 @@
 #include "Game/Field.h"
 #include "Game/Enemy.h"
 //#include "Title/Title.h"
-
+#include "Game/HP.h"
 
 //--------------------------------------------
 //ƒOƒ[ƒoƒ‹•Ï”—Ìˆæ
@@ -72,9 +72,10 @@ void Init(void)
 	Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
+	Base::Add(new Enemy(CVector2D(1000, 500), true));
 	Base::Add(new Enemy(CVector2D(1200, 500), true));
-
-
+	Base::Add(new Enemy(CVector2D(1400, 500), true));
+	Base::Add(new Enemy(CVector2D(1600, 500), true));
 }
 
 
