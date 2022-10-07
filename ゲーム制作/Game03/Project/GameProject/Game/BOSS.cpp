@@ -34,6 +34,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_img.ChangeAnimation(0);
 	m_pos = p;
 	m_img.SetCenter(128, 244);
+	m_rect = CRect(-32, -128, 32, 0);
 	m_flip = flip;
 	m_is_ground = false;
 	m_state = eState_Idle;
@@ -67,6 +68,18 @@ void Boss::StateDamage()
 }
 void Boss::StateDown()
 {
+	if (--m_cnt <= 0) {
+		m_cnt = rand() % 120 + 180;
+		m_state = eState_Wait;
+	}
+}
+void Boss::StateWait()
+{
+	m_img.ChangeAnimation(eAnimIdle);
+	if (--m_cnt <= 0) {
+		m_cnt = rand() % 120 + 180;
+		m_state = eState_Idle;
+	}
 }
 void Boss::Update()
 {
@@ -92,9 +105,10 @@ void Boss::Update()
 
 void Boss::Draw()
 {
-	m_img.SetPos(m_pos);
+	m_img.SetPos(GetScreenPos(m_pos));
 	m_img.SetFlipH(m_flip);
 	m_img.Draw();
+	DrawRect();
 }
 
 void Boss::Collision(Base* b)

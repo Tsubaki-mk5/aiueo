@@ -10,8 +10,10 @@ private:
 		eState_Attack,
 		eState_Damage,
 		eState_Down,
+		eState_Wait,
 	};
 	int m_state;
+	int m_cnt;
 	CImage m_img;
 	bool m_flip;
 	bool m_is_ground;
@@ -20,6 +22,7 @@ private:
 	void StateAttack();
 	void StateDamage();
 	void StateDown();
+	void StateWait();
 
 
 public:

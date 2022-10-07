@@ -56,13 +56,13 @@ void Base::KillAll() {
 }
 
 
-
 bool Base::CollisionCircle(Base* b1, Base* b2) {
 	CVector2D v = b1->m_pos - b2->m_pos;
 	float l = v.Length();
 	if (l < b1->m_rad + b2->m_rad) {
 		return true;
 	}
+
 	return false;
 
 }
