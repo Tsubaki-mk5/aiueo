@@ -3,6 +3,7 @@
 enum {
 	eType_Field,
 	eType_UI,
+	eType_HP,
 	eType_Player,
 	eType_Enemy,
 	eType_Boss,
@@ -13,6 +14,9 @@ enum {
 	eType_Effect,
 	eType_Scene,
 };
+
+//èdóÕâ¡ë¨ìx
+#define GRAVITY	(9.8f/20)
 
 class Base {
 public:
