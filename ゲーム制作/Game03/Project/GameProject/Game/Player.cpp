@@ -5,6 +5,123 @@
 #include"Bow.h"
 #include "Field.h"
 
+static TexAnim playerIdle[] = {
+	{ 0,2 },
+	{ 1,2 },
+	{ 2,2 },
+	{ 3,2 },
+	{ 4,2 },
+	{ 5,2 },
+	{ 6,2 },
+	{ 7,2 },
+	{ 8,2 },
+	{ 9,2 },
+	{ 10,2 },
+	{ 11,2 },
+	{ 12,2 },
+	{ 13,2 },
+	{ 14,2 },
+};
+static TexAnim playerRun[] = {
+	{ 16,2 },
+	{ 17,2 },
+	{ 18,2 },
+	{ 19,2 },
+	{ 20,2 },
+	{ 21,2 },
+	{ 22,2 },
+	{ 23,2 },
+	{ 24,2 },
+	{ 25,2 },
+	{ 26,2 },
+	{ 27,2 },
+	{ 28,2 },
+	{ 29,2 },
+	{ 30,2 },
+};
+static TexAnim playerJumpUp[] = {
+	{ 32,4 },
+	{ 33,4 },
+	{ 34,4 },
+
+};
+static TexAnim playerJumpDown[] = {
+	{ 36,4 },
+	{ 37,4 },
+	{ 38,4 },
+
+};
+static TexAnim playerAttack01[] = {
+	{ 40,3 },
+	{ 41,3 },
+	{ 42,3 },
+	{ 43,2 },
+	{ 44,2 },
+	{ 45,3 },
+	{ 46,4 },
+};
+static TexAnim playerAttack01End[] = {
+	{ 48,4 },
+	{ 49,4 },
+	{ 50,4 },
+	{ 51,4 },
+	{ 52,4 },
+};
+static TexAnim playerAttack02[] = {
+	{ 56,6 },
+	{ 57,6 },
+	{ 58,4 },
+	{ 59,2 },
+	{ 60,2 },
+	{ 61,2 },
+	{ 62,4 },
+};
+static TexAnim playerAttack02End[] = {
+	{ 64,4 },
+	{ 65,4 },
+	{ 66,4 },
+	{ 67,4 },
+	{ 68,4 },
+};
+static TexAnim playerDamage[] = {
+	{ 88,2 },
+	{ 89,2 },
+	{ 90,2 },
+	{ 91,2 },
+};
+static TexAnim playerDamageEnd[] = {
+	{ 92,2 },
+	{ 93,2 },
+	{ 94,2 },
+	{ 95,2 },
+};
+static TexAnim playerDown[] = {
+	{ 104,4 },
+	{ 105,4 },
+	{ 106,4 },
+	{ 107,4 },
+	{ 108,4 },
+};
+static TexAnim playerDownGround[] = {
+	{ 109,4 },
+	{ 110,4 },
+	{ 111,4 },
+};
+TexAnimData player_anim_data[] = {
+	ANIMDATA(playerIdle),
+	ANIMDATA(playerRun),
+	ANIMDATA(playerJumpUp),
+	ANIMDATA(playerJumpDown),
+	ANIMDATA(playerAttack01),
+	ANIMDATA(playerAttack01End),
+	ANIMDATA(playerAttack02),
+	ANIMDATA(playerAttack02End),
+	ANIMDATA(playerDamage),
+	ANIMDATA(playerDamageEnd),
+	ANIMDATA(playerDown),
+	ANIMDATA(playerDownGround),
+};
+
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	m_img = COPY_RESOURCE("Player", CImage);

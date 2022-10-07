@@ -2,7 +2,7 @@
 
 Bow::Bow(const CVector2D& pos,bool flip) :Base(eType_Bow)
 {
-	m_img.Load("Image/Bullet.png");
+	m_img.Load("Image/Bow.png");
 	m_pos = pos;
 	m_rad = 12;
 	m_img.SetSize(32, 32);
