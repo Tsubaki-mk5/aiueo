@@ -6,25 +6,18 @@
 #include "AnimData.h"
 
 Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
-	//画像複製
 	m_img.Load("Image/Enemy1.png", enemy_anim_data, 96, 96);
 	m_rad = 16;
 	m_img.SetSize(150, 150);
-	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
-	//座標設定
 	m_pos = p;
-	//中心位置設定
 	m_img.SetCenter(75, 75);
-	//当たり判定用矩形設定
 	m_rect = CRect(-32, -128, 32, 0);
-	//反転フラグ
 	m_flip = flip;
 
-	//通常状態へ
 	m_state = eState_Idle;
 
-	//着地フラグ
+
 	m_is_ground = true;
 	//攻撃番号
 	m_attack_no = rand();
@@ -38,7 +31,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
 void Enemy::StateIdle() {
 
 	//移動量
-	const float move_speed = 6;
+	const float move_speed = 4;
 	//移動フラグ
 	bool move_flag = false;
 	//ジャンプ力
@@ -65,12 +58,12 @@ void Enemy::StateIdle() {
 			//反転フラグ
 			m_flip = false;
 			move_flag = true;
-		}
+		}/*
 		else {
 			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;
-		}
+		}*/
 	}
 
 	if (move_flag) {
@@ -81,13 +74,14 @@ void Enemy::StateIdle() {
 		//待機アニメーション
 		m_img.ChangeAnimation(eAnimIdle);
 	}
+	/*
 	//カウント0で待機状態へ
 	if (--m_cnt <= 0) {
 		//待機時間3秒～5秒
 		m_cnt = rand() % 120 + 180;
 		m_state = eState_Wait;
 	}
-
+	*/
 
 }
 
@@ -116,21 +110,21 @@ void Enemy::Update() {
 	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
 	//重力による落下
-//	m_vec.y += GRAVITY;
+	m_vec.y += GRAVITY;
 	m_pos += m_vec;
 
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
 	//スクロール設定
-//	m_scroll.x;
+	m_scroll.x;
 	m_img.ChangeAnimation(eAnimIdle);
 
 }
 
 void Enemy::Draw() {
 	//位置設定
-	m_img.SetPos((m_pos));
+	m_img.SetPos(GetScreenPos(m_pos));
 	//反転設定
 	m_img.SetFlipH(m_flip);
 	//描画
@@ -144,8 +138,23 @@ void Enemy::Draw() {
 	m_gauge.Draw();
 }
 
-void Enemy::Collision(Base* b)
-{
-	
+void Enemy::Collision(Base* b) {
+	switch (b->m_type) {
+	case eType_Field:
+		//Field型へキャスト、型変換できたら
+		if (Field* f = dynamic_cast<Field*>(b)) {
+			//地面より下にいったら
+			if (m_pos.y > f->GetGroundY()) {
+				//地面の高さに戻す
+				m_pos.y = f->GetGroundY();
+				//落下速度リセット
+				m_vec.y = 0;
+				//接地フラグON
+				m_is_ground = true;
+			}
 
+			break;
+		}
+	}
 }
+
