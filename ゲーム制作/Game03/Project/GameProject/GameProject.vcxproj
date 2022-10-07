@@ -16,6 +16,7 @@
     <ClCompile Include="Game\Arrow.cpp" />
     <ClCompile Include="Game\BOSS.cpp" />
     <ClCompile Include="Game\Bow.cpp" />
+    <ClCompile Include="Game\Effect.cpp" />
     <ClCompile Include="Game\Enemy.cpp" />
     <ClCompile Include="Game\Field.cpp" />
     <ClCompile Include="Game\Player.cpp" />
@@ -28,6 +29,7 @@
     <ClInclude Include="Game\Arrow.h" />
     <ClInclude Include="Game\BOSS.h" />
     <ClInclude Include="Game\Bow.h" />
+    <ClInclude Include="Game\Effect.h" />
     <ClInclude Include="Game\Enemy.h" />
     <ClInclude Include="Game\Field.h" />
     <ClInclude Include="Game\Player.h" />
