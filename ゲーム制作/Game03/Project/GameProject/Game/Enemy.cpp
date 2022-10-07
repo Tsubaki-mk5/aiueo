@@ -59,13 +59,13 @@ void Enemy::StateIdle() {
 			m_flip = false;
 			move_flag = true;
 		}
-		
+		/*
 		else {
 			//UŒ‚ó‘Ô‚ÖˆÚs
 			if (player->m_pos.x < m_pos.x + 1)
 			m_state = eState_Attack;
 			m_attack_no++;
-		}
+		}*/
 	}
 
 	if (move_flag) {
