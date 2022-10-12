@@ -14,7 +14,6 @@ Sword::Sword(const CVector2D& pos, bool flip, int attack_no) : Base(eType_Sword)
 }
 void Sword::Update() {
 	m_img.UpdateAnimation();
-	//m_ang -= 0.1;
 	if (m_flip) {
 		m_img.SetCenter(60, 60);
 		m_ang += 0.1;
