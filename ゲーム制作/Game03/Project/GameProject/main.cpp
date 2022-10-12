@@ -69,7 +69,7 @@ void Init(void)
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 64, 64));
 
 	Base::Add(new Player(CVector2D(200, 500), true));
-	Base::Add(new Boss(CVector2D(800, 500), true));
+	Base::Add(new Boss(CVector2D(7000, 700), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
 	Base::Add(new Enemy(CVector2D(1000, 50), true));
