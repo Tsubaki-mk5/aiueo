@@ -135,12 +135,12 @@ void Player::StateIdle() {
 void Player::StateAttackSword()
 {
 	m_img.ChangeAnimation(eAnimAttackSword, false);
-	if (m_img.GetIndex() == 3) {
+	if (m_img.GetIndex() == 0) {
 		if (m_flip) {
-			Base::Add(new Sword(m_pos + CVector2D(-50, 0), m_flip, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(-20, 10), m_flip, m_attack_no));
 		}
 		else {
-			Base::Add(new Sword(m_pos + CVector2D(50, 0), m_flip, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(20, 10), m_flip, m_attack_no));
 		}
 	}
 	if (m_img.CheckAnimationEnd()) {
