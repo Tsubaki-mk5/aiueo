@@ -33,49 +33,22 @@ static TexAnim playerJumpDown[] = {
 	{ 3,4 },
 	{ 3,4 },
 };
-static TexAnim playerAttack01[] = {
-	{ 40,3 },
-	{ 41,3 },
-	{ 42,3 },
-	{ 43,2 },
-	{ 44,2 },
-	{ 45,3 },
-	{ 46,4 },
+static TexAnim playerAttackSword[] = {
+	{ 32,5 },
+	{ 33,5 },
+	{ 34,5 },
+	{ 35,5 },
 };
-static TexAnim playerAttack01End[] = {
-	{ 48,4 },
-	{ 49,4 },
-	{ 50,4 },
-	{ 51,4 },
-	{ 52,4 },
-};
-static TexAnim playerAttack02[] = {
-	{ 56,6 },
-	{ 57,6 },
-	{ 58,4 },
-	{ 59,2 },
-	{ 60,2 },
-	{ 61,2 },
-	{ 62,4 },
-};
-static TexAnim playerAttack02End[] = {
-	{ 64,4 },
-	{ 65,4 },
-	{ 66,4 },
-	{ 67,4 },
-	{ 68,4 },
+static TexAnim playerAttackArrow[] = {
+	{ 21,6 },
+	{ 22,6 },
+	{ 23,6 },
 };
 static TexAnim playerDamage[] = {
 	{ 88,2 },
 	{ 89,2 },
 	{ 90,2 },
 	{ 91,2 },
-};
-static TexAnim playerDamageEnd[] = {
-	{ 92,2 },
-	{ 93,2 },
-	{ 94,2 },
-	{ 95,2 },
 };
 static TexAnim playerDown[] = {
 	{ 104,4 },
@@ -84,24 +57,15 @@ static TexAnim playerDown[] = {
 	{ 107,4 },
 	{ 108,4 },
 };
-static TexAnim playerDownGround[] = {
-	{ 109,4 },
-	{ 110,4 },
-	{ 111,4 },
-};
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
 	ANIMDATA(playerRun),
 	ANIMDATA(playerJumpUp),
 	ANIMDATA(playerJumpDown),
-	ANIMDATA(playerAttack01),
-	ANIMDATA(playerAttack01End),
-	ANIMDATA(playerAttack02),
-	ANIMDATA(playerAttack02End),
+	ANIMDATA(playerAttackSword),
+	ANIMDATA(playerAttackArrow),
 	ANIMDATA(playerDamage),
-	ANIMDATA(playerDamageEnd),
 	ANIMDATA(playerDown),
-	ANIMDATA(playerDownGround),
 };
 
 Player::Player(const CVector2D& p, bool flip) :
@@ -109,20 +73,21 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_img = COPY_RESOURCE("Player", CImage);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
-	m_img.SetCenter(32, 32);
+	m_img.SetCenter(40, 40);
+	m_img.SetSize(80, 80);
 	m_flip = flip;
 	m_state = eState_Idle;
 	m_is_ground;
 	m_attack_no = rand();
 	m_damage_no = -1;
-	m_rect = CRect(-32, -32, 32, 0);
+	m_rect = CRect(-40, -40, 40, 0);
 	m_hp = 1;
 }
 
 void Player::StateIdle() {
 
 	const float move_speed = 4;
-	const float jump_pow = 10;
+	const float jump_pow = 12;
 	bool move_flag = false;
 
 	if (HOLD(CInput::eLeft)) {
@@ -169,13 +134,13 @@ void Player::StateIdle() {
 
 void Player::StateAttackSword()
 {
-	m_img.ChangeAnimation(eAnimAttack01, false);
+	m_img.ChangeAnimation(eAnimAttackSword, false);
 	if (m_img.GetIndex() == 3) {
 		if (m_flip) {
-			Base::Add(new Sword(m_pos + CVector2D(-50, -50), m_flip, eType_Sword, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(-50, 0), m_flip, m_attack_no));
 		}
 		else {
-			Base::Add(new Sword(m_pos + CVector2D(50, -50), m_flip, eType_Sword, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(50, 0), m_flip, m_attack_no));
 		}
 	}
 	if (m_img.CheckAnimationEnd()) {
@@ -185,15 +150,15 @@ void Player::StateAttackSword()
 
 void Player::StateAttackArrow()
 {
-	m_img.ChangeAnimation(eAnimAttack01, false);
-	if (m_img.GetIndex() == 3) {
+	m_img.ChangeAnimation(eAnimAttackArrow, false);
+	if (m_img.GetIndex() == 1) {
 		if (m_flip) {
-			Base::Add(new Bow(m_pos + CVector2D(-30, -30), m_flip));
-			Base::Add(new Arrow(m_pos + CVector2D(-50, -50), m_flip, m_attack_no));
+			Base::Add(new Bow(m_pos + CVector2D(-30, 0), m_flip));
+			Base::Add(new Arrow(m_pos + CVector2D(-50, 0), m_flip, m_attack_no));
 		}
 		else {
-			Base::Add(new Bow(m_pos + CVector2D(30, -30), m_flip));
-			Base::Add(new Arrow(m_pos + CVector2D(50, -50), m_flip, m_attack_no));
+			Base::Add(new Bow(m_pos + CVector2D(30, 0), m_flip));
+			Base::Add(new Arrow(m_pos + CVector2D(50, 0), m_flip, m_attack_no));
 		}
 	}
 	if (m_img.CheckAnimationEnd()) {

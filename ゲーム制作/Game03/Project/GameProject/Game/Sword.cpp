@@ -1,6 +1,6 @@
 #include "Sword.h"
 
-Sword::Sword(const CVector2D& pos, bool flip, int type, int attack_no) : Base(type) {
+Sword::Sword(const CVector2D& pos, bool flip, int attack_no) : Base(eType_Sword) {
 
 	m_img = COPY_RESOURCE("Sword", CImage);
 	m_flip = flip;

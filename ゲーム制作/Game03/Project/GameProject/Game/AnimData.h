@@ -7,14 +7,10 @@ enum  {
 	eAnimRun,
 	eAnimJumpUp,
 	eAnimJumpDown,
-	eAnimAttack01,
-	eAnimAttack01End,
-	eAnimAttack02,
-	eAnimAttack02End,
+	eAnimAttackSword,
+	eAnimAttackArrow,
 	eAnimDamage,
-	eAnimDamageEnd,
 	eAnimDown,
-	eAnimDownGround,
 };
 //プレイヤーのアニメーションデータ
 extern TexAnimData player_anim_data[];
