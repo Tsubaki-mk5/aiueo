@@ -2,6 +2,7 @@
 
 Bow::Bow(const CVector2D& pos,bool flip) :Base(eType_Bow)
 {
+	//m_img.Load("Image/Bow.png");
 	m_img = COPY_RESOURCE("Bow", CImage);
 	m_pos = pos;
 	m_flip = flip;

@@ -9,8 +9,21 @@ enum  {
 	eAnimJumpDown,
 	eAnimAttackSword,
 	eAnimAttackArrow,
+	eAnimAttack03,
+	eAnimAttack03End,
 	eAnimDamage,
+	eAnimDeath,
 	eAnimDown,
+	eAnimWakeUp,
+	eAnimGuard,
+	eAnimGuardEnd,
+	eAnimCrash,
+	eAnimCrashEnd,
+	eAnimExtAttack01,
+	eAnimExtAttack01End,
+	eAnimExtAttack02,
+	eAnimExtAttack02End,
+	eAnimStep,
 };
 //プレイヤーのアニメーションデータ
 extern TexAnimData player_anim_data[];

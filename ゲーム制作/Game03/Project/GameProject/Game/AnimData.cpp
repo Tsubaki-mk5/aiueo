@@ -1,17 +1,19 @@
 #include "AnimData.h"
 
+
+
 static TexAnim enemyIdle[] = {
-	{ 0,8 },
-	{ 1,8 },
-	{ 2,8 },
-	{ 3,8 },
+	{ 7,8 },
+	{ 6,8 },
+	{ 5,8 },
+	{ 4,8 },
 };
 static TexAnim enemyRun[] = {
-	{ 9,6 },
-	{ 10,6 },
-	{ 11,6 },
-	{ 12,6 },
+	{ 15,6 },
+	{ 14,6 },
 	{ 13,6 },
+	{ 12,6 },
+	{ 11,6 },
 
 };
 static TexAnim enemyJumpUp[] = {
@@ -23,11 +25,11 @@ static TexAnim enemyJumpDown[] = {
 };
 
 static TexAnim enemyAttack01[] = {
-	{ 17,6 },
-	{ 18,6 },
-	{ 19,6 },
-	{ 20,6 },
+	{ 22,6 },
 	{ 21,6 },
+	{ 20,6 },
+	{ 19,6 },
+	{ 18,6 },
 };
 static TexAnim enemyAttack01End[] = {
 	{ 48,2 },
@@ -49,8 +51,8 @@ static TexAnim enemyAttack03End[] = {
 	{ 0,0 },
 };
 static TexAnim enemyDamage[] = {
-	{ 24,6 },
-	{ 25,6 },
+	{ 29,6 },
+	{ 28,6 },
 };
 static TexAnim enemyDamageEnd[] = {
 	{ 92,2 },

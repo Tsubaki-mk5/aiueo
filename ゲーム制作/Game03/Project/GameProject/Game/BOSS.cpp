@@ -29,11 +29,13 @@ TexAnimData Boss_anim_data[] = {
 	ANIMDATA(BossAttack),
 	ANIMDATA(BossDamage),
 };
+
 Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_img = COPY_RESOURCE("Boss", CImage);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
-	m_img.SetCenter(75,75 );
+	m_img.SetCenter(400,400 );
+	m_img.SetSize(500, 500);
 	m_rect = CRect(-32, -128, 32, 0);
 	m_flip = flip;
 	m_is_ground = false;
@@ -41,23 +43,24 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 }
 void Boss::StateIdle()
 {
-	const float move_speed = 6;
+	const float move_speed = 0;
 	bool move_flag = false;
 	Base* player = Base::FindObject(eType_Player);
 	
-	/*if (player->m_pos.x < m_pos.x - 64) {
+	if (player->m_pos.x < m_pos.x - 64) {
 		m_pos.x += -move_speed;
-		m_flip = true;
-		move_flag = true;
-	}
-	if (player->m_pos.x > m_pos.x + 64) {
 		m_flip = false;
 		move_flag = true;
 	}
-	*/
+	if (player->m_pos.x > m_pos.x + 64) {
+		m_flip = true;
+		move_flag = true;
+	}
+	
 }
 void Boss::StateAttack()
 {
+	
 }
 void Boss::StateDamage()
 {

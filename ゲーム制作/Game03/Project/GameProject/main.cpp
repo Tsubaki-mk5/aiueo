@@ -76,13 +76,13 @@ void Init(void)
 
 
 	Base::Add(new Player(CVector2D(200, 500), true));
-	Base::Add(new Boss(CVector2D(800, 500), true));
+	Base::Add(new Boss(CVector2D(7000, 700), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
-	Base::Add(new Enemy(CVector2D(1000, 500), true));
-	Base::Add(new Enemy(CVector2D(1200, 500), true));
-	Base::Add(new Enemy(CVector2D(1400, 500), true));
-	Base::Add(new Enemy(CVector2D(1600, 500), true));
+	Base::Add(new Enemy(CVector2D(1000, 50), true));
+	Base::Add(new Enemy(CVector2D(1800, 500), true));
+	Base::Add(new Enemy(CVector2D(2100, 500), true));
+	Base::Add(new Enemy(CVector2D(2800, 500), true));
 }
 
 
