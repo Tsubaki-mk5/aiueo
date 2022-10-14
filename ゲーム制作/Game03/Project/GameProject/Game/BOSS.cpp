@@ -115,6 +115,12 @@ void Boss::Draw()
 	m_img.SetFlipH(m_flip);
 	m_img.Draw();
 	DrawRect();
+
+	m_gauge.HpMax = 1000;
+	m_gauge.NowHp = m_hp;
+	m_gauge.Width = 200;
+	m_gauge.m_pos = m_pos;
+	m_gauge.Draw();
 }
 
 void Boss::Collision(Base* b)

@@ -1,5 +1,6 @@
 #pragma once
 #include "../Base/Base.h"
+#include "HP.h"
 //ボスのアニメーションデータ
 extern TexAnimData Boss_anim_data[];
 
@@ -13,6 +14,7 @@ private:
 		eState_Wait,
 	};
 	int m_hp;
+	HP m_gauge;
 	int m_state;
 	int m_cnt;
 	CImage m_img;
