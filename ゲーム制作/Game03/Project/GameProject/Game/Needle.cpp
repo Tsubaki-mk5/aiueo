@@ -2,7 +2,7 @@
 
 Needle::Needle(const CVector2D& pos) : Base(eType_Needle) {
 
-	m_img = COPY_RESOURCE("êj", CImage);
+	m_img = COPY_RESOURCE("Needle", CImage);
 	m_pos = pos;
 	m_img.SetSize(60, 60);
 	m_img.SetCenter(0, 60);
