@@ -13,6 +13,7 @@ enum {
 	eType_Effect,
 	eType_Bow,
 	eType_Arrow,
+	eType_Needle,
 	eType_Scene,
 };
 //d—Í‰Á‘¬“x
