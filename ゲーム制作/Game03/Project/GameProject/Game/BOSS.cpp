@@ -41,6 +41,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_flip = flip;
 	m_is_ground = false;
 	m_state = eState_Idle;
+	m_hp = 500;
 }
 void Boss::StateIdle()
 {
@@ -54,6 +55,7 @@ void Boss::StateIdle()
 		move_flag = true;
 	}
 	if (player->m_pos.x > m_pos.x + 64) {
+		m_pos.x += move_speed;
 		m_flip = true;
 		move_flag = true;
 	}
