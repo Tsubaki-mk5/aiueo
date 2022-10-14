@@ -14,16 +14,17 @@ static TexAnim BossIdle[] = {
 };
 
 static TexAnim BossAttack[] = {
-	{ 8,10 },
-	{ 9,10 },
-	{ 10,10 },
-	{ 11,10 },
+	{ 8,15 },
+	{ 9,15 },
+	{ 10,15 },
+	{ 11,15 },
 };
 static TexAnim BossDamage[] = {
 	{ 12,5 },
 	{ 13,5 },
 	{ 14,5 },
 };
+
 TexAnimData Boss_anim_data[] = {
 	ANIMDATA(BossIdle),
 	ANIMDATA(BossAttack),
@@ -60,11 +61,12 @@ void Boss::StateIdle()
 		m_flip = true;
 		move_flag = true;
 	}
-	//p=50b=30b(500)
+
 	float d = player->m_pos.x - m_pos.x;
-	if (abs(d) <= 400)
+	if (abs(d) <= 1000)
 		m_state = eState_Attack;
 }
+
 void Boss::StateAttack()
 {
 	m_img.ChangeAnimation(AnimAttack, false);
@@ -81,18 +83,6 @@ void Boss::StateDamage()
 }
 void Boss::StateDown()
 {
-	if (--m_cnt <= 0) {
-		m_cnt = rand() % 120 + 180;
-		m_state = eState_Wait;
-	}
-}
-void Boss::StateWait()
-{
-	m_img.ChangeAnimation(eAnimIdle);
-	if (--m_cnt <= 0) {
-		m_cnt = rand() % 120 + 180;
-		m_state = eState_Idle;
-	}
 }
 void Boss::Update()
 {

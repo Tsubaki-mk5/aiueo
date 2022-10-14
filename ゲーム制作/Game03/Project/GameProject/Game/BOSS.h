@@ -10,6 +10,7 @@ private:
 		AnimIdle,
 		AnimAttack,
 		AnimDamage,
+		AnimWait,
 	};
 	enum {
 		eState_Idle,
