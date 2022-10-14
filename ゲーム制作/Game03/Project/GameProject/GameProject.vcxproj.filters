@@ -18,8 +18,8 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Game\HP.cpp">
-		<Filter>Game</Filter>
-	</ClCompile>
+      <Filter>Game</Filter>
+    </ClCompile>
     <ClCompile Include="Game\Arrow.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -43,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="Game\Effect.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Title\Title.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="Game\Effect.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Title\Title.h">
+      <Filter>Title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

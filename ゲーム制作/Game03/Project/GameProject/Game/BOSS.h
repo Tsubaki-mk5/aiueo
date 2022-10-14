@@ -12,6 +12,7 @@ private:
 		eState_Down,
 		eState_Wait,
 	};
+	int m_hp;
 	int m_state;
 	int m_cnt;
 	CImage m_img;
