@@ -9,6 +9,7 @@
 #include"Game/Sword.h"
 #include"Game/Arrow.h"
 #include"Game/Bow.h"
+#include"Game/Needle.h"
 #include "Game/BOSS.h"
 #include "Game/Field.h"
 #include "Game/Enemy.h"
@@ -73,12 +74,14 @@ void Init(void)
 	ADD_RESOURCE("Sword", CImage::CreateImage("Image/Sword.png"));
 	ADD_RESOURCE("Arrow", CImage::CreateImage("Image/Arrow.png"));
 	ADD_RESOURCE("Bow", CImage::CreateImage("Image/Bow.png"));
+	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
 
 
 	Base::Add(new Player(CVector2D(200, 500), true));
 	Base::Add(new Boss(CVector2D(7000, 700), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
+	Base::Add(new Needle(CVector2D(800,800)));
 	Base::Add(new Enemy(CVector2D(1000, 50), true));
 	Base::Add(new Enemy(CVector2D(1800, 500), true));
 	Base::Add(new Enemy(CVector2D(2100, 500), true));
