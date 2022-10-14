@@ -9,16 +9,6 @@ static TexAnim playerIdle[] = {
 	{ 8,8 },
 };
 static TexAnim playerRun[] = {
-	/*{3,4},
-	{ 4,4 },
-	{ 5,4 },
-	{ 6,4 },
-	{ 7,4 },
-	{ 8,4 },
-	{ 9,4 },
-	{ 10,4 },
-	{ 11,4 },
-	{ 12,4 },*/
 	{ 12,7 },
 	{ 13,7 },
 	{ 14,7 },
@@ -51,11 +41,11 @@ static TexAnim playerDamage[] = {
 	{ 91,2 },
 };
 static TexAnim playerDown[] = {
-	{ 104,4 },
-	{ 105,4 },
-	{ 106,4 },
-	{ 107,4 },
-	{ 108,4 },
+	{ 27,4 },
+	{ 36,4 },
+	{ 45,4 },
+	{ 46,4 },
+	{ 47,4 },
 };
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
