@@ -1,7 +1,7 @@
 //ゲーム係機能のインクルード
 #include <GLLibrary.h>
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 
 #include "Game/AnimData.h"
 #include "Base/Base.h"
@@ -78,7 +78,7 @@ void Init(void)
 
 
 	Base::Add(new Player(CVector2D(200, 500), true));
-	Base::Add(new Boss(CVector2D(7000, 700), true));
+	Base::Add(new Boss(CVector2D(1000, 700), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
 	Base::Add(new Needle(CVector2D(800,800)));

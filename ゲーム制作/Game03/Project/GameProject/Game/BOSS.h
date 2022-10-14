@@ -7,6 +7,11 @@ extern TexAnimData Boss_anim_data[];
 class Boss : public Base {
 private:
 	enum {
+		AnimIdle,
+		AnimAttack,
+		AnimDamage,
+	};
+	enum {
 		eState_Idle,
 		eState_Attack,
 		eState_Damage,

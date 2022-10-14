@@ -45,6 +45,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 }
 void Boss::StateIdle()
 {
+	m_img.ChangeAnimation(AnimIdle);
 	const float move_speed = 0;
 	bool move_flag = false;
 	Base* player = Base::FindObject(eType_Player);
@@ -59,15 +60,21 @@ void Boss::StateIdle()
 		m_flip = true;
 		move_flag = true;
 	}
-	
+	//p=50b=30b(500)
+	float d = player->m_pos.x - m_pos.x;
+	if (abs(d) <= 400)
+		m_state = eState_Attack;
 }
 void Boss::StateAttack()
 {
-	
+	m_img.ChangeAnimation(AnimAttack, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
+	}
 }
 void Boss::StateDamage()
 {
-	m_img.ChangeAnimation(eAnimDamage, false);
+	m_img.ChangeAnimation(AnimDamage, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
