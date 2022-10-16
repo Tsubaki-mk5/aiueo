@@ -38,6 +38,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_flip = flip;
 	m_is_ground = false;
 	m_state = eState_Idle;
+	m_hp = 100;
 }
 void Boss::StateIdle()
 {
@@ -109,6 +110,11 @@ void Boss::Draw()
 	m_img.SetFlipH(m_flip);
 	m_img.Draw();
 	DrawRect();
+	m_gauge.HpMax = 1000;
+	m_gauge.NowHp = m_hp;
+	m_gauge.Width = 200;
+	m_gauge.m_pos = m_pos;
+	m_gauge.Draw();
 }
 
 void Boss::Collision(Base* b)

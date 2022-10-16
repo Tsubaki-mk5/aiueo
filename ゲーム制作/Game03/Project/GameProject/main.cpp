@@ -11,7 +11,7 @@
 #include "Game/Enemy.h"
 //#include "Title/Title.h"
 #include "Game/HP.h"
-
+//#include "Game/Slash.h"
 //--------------------------------------------
 //ÉOÉçÅ[ÉoÉãïœêîóÃàÊ
 //--------------------------------------------
@@ -67,7 +67,7 @@ void Init(void)
 	ADD_RESOURCE("DOUKUTSU", CImage::CreateImage("Image/DOUKUTSU.png"));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Boldarch.png", Boss_anim_data, 104, 105));
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 64, 64));
-
+	ADD_RESOURCE("Effect_Slash", CImage::CreateImage("Image/Effect_Slash.png", effect_slash_anim_data, 128, 128));
 	Base::Add(new Player(CVector2D(200, 500), true));
 	Base::Add(new Boss(CVector2D(800, 500), true));
 	//Base::Add(new Title());

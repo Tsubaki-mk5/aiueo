@@ -15,7 +15,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_state = eState_Idle;
 	m_is_ground;
 	m_attack_no = rand();
-	m_damage_no = -1;
+	m_damage_no = (0);
 	m_rect = CRect(-32, -32, 32, 0);
 	m_hp = 1;
 }
@@ -150,6 +150,12 @@ void Player::Draw() {
 	m_img.SetPos(GetScreenPos(m_pos));
 	m_img.SetFlipH(m_flip);
 	m_img.Draw();
+	DrawRect();
+	m_gauge.HpMax = 1000;
+	m_gauge.NowHp = m_hp;
+	m_gauge.Width = 200;
+	m_gauge.m_pos = m_pos;
+	m_gauge.Draw();
 }
 void Player::Collision(Base* b)
 {

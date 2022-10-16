@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "../Base/Base.h"
 #include "HP.h"
 class Enemy : public Base {
@@ -19,14 +18,9 @@ private:
 
 	CImage m_img;
 	bool m_flip;
-
-	//着地フラグ
 	bool m_is_ground;
-	//攻撃番号
 	int m_attack_no;
-	//ダメージ番号
 	int m_damage_no;
-	//ヒットポイント
 	int m_hp;
 	HP m_gauge;
 

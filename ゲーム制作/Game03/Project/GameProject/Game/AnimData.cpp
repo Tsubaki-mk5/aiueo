@@ -231,11 +231,11 @@ static TexAnim enemyIdle[] = {
 	{ 4,8 },
 };
 static TexAnim enemyRun[] = {
-	{ 15,6 },
-	{ 14,6 },
-	{ 13,6 },
-	{ 12,6 },
-	{ 11,6 },
+	{ 15,8 },
+	{ 14,8 },
+	{ 13,8 },
+	{ 12,8 },
+	{ 11,8 },
 
 };
 static TexAnim enemyJumpUp[] = {
