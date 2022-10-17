@@ -63,14 +63,14 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_img = COPY_RESOURCE("Player", CImage);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
-	m_img.SetCenter(40, 40);
+	m_img.SetCenter(40, 80);
 	m_img.SetSize(80, 80);
+	m_rect = CRect(-40, -80, 40, 0);
 	m_flip = flip;
 	m_state = eState_Idle;
 	m_is_ground;
 	m_attack_no = rand();
 	m_damage_no = -1;
-	m_rect = CRect(-40, -40, 40, 0);
 	m_hp = 1;
 }
 
@@ -127,10 +127,10 @@ void Player::StateAttackSword()
 	m_img.ChangeAnimation(eAnimAttackSword, false);
 	if (m_img.GetIndex() == 0) {
 		if (m_flip) {
-			Base::Add(new Sword(m_pos + CVector2D(-20, 10), m_flip, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(-20, -30), m_flip, m_attack_no));
 		}
 		else {
-			Base::Add(new Sword(m_pos + CVector2D(20, 10), m_flip, m_attack_no));
+			Base::Add(new Sword(m_pos + CVector2D(20, -30), m_flip, m_attack_no));
 		}
 	}
 	if (m_img.CheckAnimationEnd()) {
@@ -143,12 +143,12 @@ void Player::StateAttackArrow()
 	m_img.ChangeAnimation(eAnimAttackArrow, false);
 	if (m_img.GetIndex() == 1) {
 		if (m_flip) {
-			Base::Add(new Bow(m_pos + CVector2D(-30, 0), m_flip));
-			Base::Add(new Arrow(m_pos + CVector2D(-50, 0), m_flip, m_attack_no));
+			Base::Add(new Bow(m_pos + CVector2D(-30, -30), m_flip));
+			Base::Add(new Arrow(m_pos + CVector2D(-50, -30), m_flip, m_attack_no));
 		}
 		else {
-			Base::Add(new Bow(m_pos + CVector2D(30, 0), m_flip));
-			Base::Add(new Arrow(m_pos + CVector2D(50, 0), m_flip, m_attack_no));
+			Base::Add(new Bow(m_pos + CVector2D(30, -30), m_flip));
+			Base::Add(new Arrow(m_pos + CVector2D(50, -30), m_flip, m_attack_no));
 		}
 	}
 	if (m_img.CheckAnimationEnd()) {

@@ -77,7 +77,7 @@ void Init(void)
 	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
 
 
-	Base::Add(new Player(CVector2D(200, 500), true));
+	Base::Add(new Player(CVector2D(200, 800), true));
 	Base::Add(new Boss(CVector2D(7000, 700), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
