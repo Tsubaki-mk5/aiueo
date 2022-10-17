@@ -26,7 +26,6 @@ private:
 	CImage m_img;
 	bool m_flip;
 	bool m_is_ground;
-
 	void StateIdle();
 	void StateAttack();
 	void StateDamage();

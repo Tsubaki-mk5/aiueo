@@ -74,7 +74,7 @@ void Init(void)
 	ADD_RESOURCE("Arrow", CImage::CreateImage("Image/Arrow.png"));
 	ADD_RESOURCE("Bow", CImage::CreateImage("Image/Bow.png"));
 	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
-
+	ADD_RESOURCE("Effect_Slash", CImage::CreateImage("Image/Effect_Slash.png", effect_slash_anim_data, 128, 128));
 
 	Base::Add(new Player(CVector2D(200, 800), true));
 	Base::Add(new Boss(CVector2D(1000, 700), true));
