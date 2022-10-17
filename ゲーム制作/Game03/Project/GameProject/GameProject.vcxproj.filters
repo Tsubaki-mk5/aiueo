@@ -44,7 +44,17 @@
     <ClCompile Include="Game\Effect.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Game\Slash.cpp">
+=======
+    <ClCompile Include="Title\Title.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Needle.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Thunder.cpp">
+>>>>>>> 2b5e66decac87a56e0f49b2e2f2400c6eade3864
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -102,7 +112,17 @@
     <ClInclude Include="Game\Effect.h">
       <Filter>Game</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Game\Slash.h">
+=======
+    <ClInclude Include="Title\Title.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Needle.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Thunder.h">
+>>>>>>> 2b5e66decac87a56e0f49b2e2f2400c6eade3864
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

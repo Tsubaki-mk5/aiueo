@@ -20,10 +20,19 @@
     <ClCompile Include="Game\Enemy.cpp" />
     <ClCompile Include="Game\Field.cpp" />
     <ClCompile Include="Game\HP.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="Game\Slash.cpp" />
     <ClCompile Include="Game\Sword.cpp" />
     <ClCompile Include="main.cpp" />
+=======
+    <ClCompile Include="Game\Needle.cpp" />
+    <ClCompile Include="Game\Player.cpp" />
+    <ClCompile Include="Game\Sword.cpp" />
+    <ClCompile Include="Game\Thunder.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Title\Title.cpp" />
+>>>>>>> 2b5e66decac87a56e0f49b2e2f2400c6eade3864
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\Base.h" />
@@ -35,9 +44,17 @@
     <ClInclude Include="Game\Enemy.h" />
     <ClInclude Include="Game\Field.h" />
     <ClInclude Include="Game\HP.h" />
+<<<<<<< HEAD
     <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\Slash.h" />
     <ClInclude Include="Game\Sword.h" />
+=======
+    <ClInclude Include="Game\Needle.h" />
+    <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="Game\Sword.h" />
+    <ClInclude Include="Game\Thunder.h" />
+    <ClInclude Include="Title\Title.h" />
+>>>>>>> 2b5e66decac87a56e0f49b2e2f2400c6eade3864
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FE2CE3B1-49BF-46A5-9DB1-9BD5B52FE1A0}</ProjectGuid>
