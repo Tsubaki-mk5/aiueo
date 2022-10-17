@@ -1,10 +1,17 @@
 #pragma once
 #include "../Base/Base.h"
+#include "HP.h"
 //ボスのアニメーションデータ
 extern TexAnimData Boss_anim_data[];
 
 class Boss : public Base {
 private:
+	enum {
+		AnimIdle,
+		AnimAttack,
+		AnimDamage,
+		AnimWait,
+	};
 	enum {
 		eState_Idle,
 		eState_Attack,
@@ -13,6 +20,7 @@ private:
 		eState_Wait,
 	};
 	int m_hp;
+	HP m_gauge;
 	int m_state;
 	int m_cnt;
 	CImage m_img;
