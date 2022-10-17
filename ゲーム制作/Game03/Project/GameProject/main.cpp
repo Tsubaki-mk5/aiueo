@@ -1,17 +1,20 @@
 //ゲーム係機能のインクルード
 #include <GLLibrary.h>
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 #include "Game/AnimData.h"
 #include "Base/Base.h"
 #include"Game/Player.h"
+#include"Game/Sword.h"
+#include"Game/Arrow.h"
+#include"Game/Bow.h"
+#include"Game/Needle.h"
 #include "Game/BOSS.h"
 #include "Game/Field.h"
 #include "Game/Enemy.h"
 //#include "Title/Title.h"
 #include "Game/HP.h"
-//#include "Game/Slash.h"
+
 //--------------------------------------------
 //グローバル変数領域
 //--------------------------------------------
@@ -67,11 +70,17 @@ void Init(void)
 	ADD_RESOURCE("DOUKUTSU", CImage::CreateImage("Image/DOUKUTSU.png"));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Boldarch.png", Boss_anim_data, 104, 105));
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 64, 64));
-	ADD_RESOURCE("Effect_Slash", CImage::CreateImage("Image/Effect_Slash.png", effect_slash_anim_data, 128, 128));
-	Base::Add(new Player(CVector2D(200, 500), true));
-	Base::Add(new Boss(CVector2D(800, 500), true));
+	ADD_RESOURCE("Sword", CImage::CreateImage("Image/Sword.png"));
+	ADD_RESOURCE("Arrow", CImage::CreateImage("Image/Arrow.png"));
+	ADD_RESOURCE("Bow", CImage::CreateImage("Image/Bow.png"));
+	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
+
+
+	Base::Add(new Player(CVector2D(200, 800), true));
+	Base::Add(new Boss(CVector2D(1000, 700), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
+	Base::Add(new Needle(CVector2D(800,800)));
 	Base::Add(new Enemy(CVector2D(1000, 50), true));
 	Base::Add(new Enemy(CVector2D(1800, 500), true));
 	Base::Add(new Enemy(CVector2D(2100, 500), true));

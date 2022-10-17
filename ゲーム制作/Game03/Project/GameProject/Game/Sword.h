@@ -5,10 +5,11 @@ class Sword : public Base {
 private:
 	CImage m_img;
 	bool	m_flip;
+	int m_cnt;
 	int m_attack_no;
 
 public:
-	Sword(const CVector2D& pos, bool flip, int type, int attack_no);
+	Sword(const CVector2D& pos, bool flip, int attack_no);
 	void Update();
 	void Draw();
 	int GetAttackNo() {

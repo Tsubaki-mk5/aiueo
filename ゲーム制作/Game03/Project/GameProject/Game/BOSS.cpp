@@ -14,34 +14,39 @@ static TexAnim BossIdle[] = {
 };
 
 static TexAnim BossAttack[] = {
-	{ 8,10 },
-	{ 9,10 },
-	{ 10,10 },
-	{ 11,10 },
+	{ 8,15 },
+	{ 9,15 },
+	{ 10,15 },
+	{ 11,15 },
 };
 static TexAnim BossDamage[] = {
 	{ 12,5 },
 	{ 13,5 },
 	{ 14,5 },
 };
+
 TexAnimData Boss_anim_data[] = {
 	ANIMDATA(BossIdle),
 	ANIMDATA(BossAttack),
 	ANIMDATA(BossDamage),
 };
+
 Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_img = COPY_RESOURCE("Boss", CImage);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
-	m_img.SetCenter(75,75 );
+	m_img.SetCenter(400,400 );
+	m_img.SetSize(500, 500);
+	m_rad = 300;
 	m_rect = CRect(-32, -128, 32, 0);
 	m_flip = flip;
 	m_is_ground = false;
 	m_state = eState_Idle;
-	m_hp = 100;
+	m_hp = 500;
 }
 void Boss::StateIdle()
 {
+	m_img.ChangeAnimation(AnimIdle);
 	const float move_speed = 0;
 	bool move_flag = false;
 	Base* player = Base::FindObject(eType_Player);
@@ -52,35 +57,32 @@ void Boss::StateIdle()
 		move_flag = true;
 	}
 	if (player->m_pos.x > m_pos.x + 64) {
+		m_pos.x += move_speed;
 		m_flip = true;
 		move_flag = true;
 	}
-	
+
+	float d = player->m_pos.x - m_pos.x;
+	if (abs(d) <= 1000)
+		m_state = eState_Attack;
 }
+
 void Boss::StateAttack()
 {
+	m_img.ChangeAnimation(AnimAttack, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
+	}
 }
 void Boss::StateDamage()
 {
-	m_img.ChangeAnimation(eAnimDamage, false);
+	m_img.ChangeAnimation(AnimDamage, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
 }
 void Boss::StateDown()
 {
-	if (--m_cnt <= 0) {
-		m_cnt = rand() % 120 + 180;
-		m_state = eState_Wait;
-	}
-}
-void Boss::StateWait()
-{
-	m_img.ChangeAnimation(eAnimIdle);
-	if (--m_cnt <= 0) {
-		m_cnt = rand() % 120 + 180;
-		m_state = eState_Idle;
-	}
 }
 void Boss::Update()
 {
@@ -110,6 +112,7 @@ void Boss::Draw()
 	m_img.SetFlipH(m_flip);
 	m_img.Draw();
 	DrawRect();
+
 	m_gauge.HpMax = 1000;
 	m_gauge.NowHp = m_hp;
 	m_gauge.Width = 200;

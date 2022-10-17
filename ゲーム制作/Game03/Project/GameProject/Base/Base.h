@@ -4,16 +4,16 @@ enum {
 	eType_Field,
 	eType_UI,
 	eType_HP,
-	eType_Boss,
-	eType_Enemy,
 	eType_Player,
-	eType_Enemy_Attack,
+	eType_Enemy,
+	eType_Boss,
 	eType_Bullet,
 	eType_Sword,
 	eType_Enemy_Bullet, 
 	eType_Effect,
 	eType_Bow,
 	eType_Arrow,
+	eType_Needle,
 	eType_Scene,
 };
 //èdóÕâ¡ë¨ìx
@@ -43,7 +43,6 @@ public:
 	static void Add(Base* b);
 	static void CollisionAll();
 	static bool CollisionCircle(Base* b1, Base* b2);
-	static bool CollisionRect(Base* b1, Base* b2);
 	static void CheckKillAll();
 	static CVector2D GetScreenPos(const CVector2D& pos);
 	Base* Base::FindObject(int Type);

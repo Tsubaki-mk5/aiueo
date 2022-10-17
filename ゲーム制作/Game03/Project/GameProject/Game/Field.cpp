@@ -3,7 +3,7 @@
 Field::Field() :Base(eType_Field) {
 
 	m_DOUKUTSU = COPY_RESOURCE("DOUKUTSU", CImage);
-	m_ground_y = 700;
+	m_ground_y = 800;
 }
 void Field::Draw() {
 	float sc;
