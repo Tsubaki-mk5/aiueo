@@ -22,6 +22,7 @@ class Base {
 public:
 	int m_type;
 	CVector2D m_pos;
+	CVector2D m_pos_old;
 	CVector2D m_vec;
 	float m_rad;
 	float m_ang;

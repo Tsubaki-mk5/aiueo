@@ -4,6 +4,7 @@
 #include"Arrow.h"
 #include"Bow.h"
 #include "Field.h"
+#include"Needle.h"
 
 static TexAnim playerIdle[] = {
 	{ 8,8 },
@@ -245,6 +246,11 @@ void Player::Collision(Base* b)
 				//Ú’nƒtƒ‰ƒOON
 				m_is_ground = true;
 			}
+		}
+		break;
+	case eType_Needle:
+		if (Needle* b = dynamic_cast<Needle*>(b)) {
+			
 		}
 		break;
 	}
