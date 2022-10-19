@@ -176,6 +176,21 @@ void Enemy::Collision(Base* b) {
 			}
 		}
 		break;
+	case eType_Arrow:
+		if (Arrow* s = dynamic_cast<Arrow*>(b)) {
+			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
+				//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
+				m_damage_no = s->GetAttackNo();
+				m_hp -= 50;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+			}
+		}
+		break;
 	case eType_Field:
 		//FieldŒ^‚ÖƒLƒƒƒXƒgAŒ^•ÏŠ·‚Å‚«‚½‚ç
 		if (Field* f = dynamic_cast<Field*>(b)) {
