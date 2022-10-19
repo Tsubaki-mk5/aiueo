@@ -3,6 +3,7 @@
 HP::HP() : Base(eType_HP) {
 	m_img.Load("Image/hp.png");
 	m_img.SetSize(150, 150);
+	//m_img.SetCenter(50, 160);
 }
 
 void HP::Draw() {
