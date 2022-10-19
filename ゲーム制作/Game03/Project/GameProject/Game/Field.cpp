@@ -13,7 +13,6 @@ void Field::Draw() {
 	sc = m_scroll.x / 4;
 	m_DOUKUTSU.SetRect(sc, 0, sc + 1920, 1080);
 	sc = m_scroll.x;
-	m_foreground.SetRect(sc, 0, sc + 1280, 720);
-	m_foreground.SetSize(1920,1080);
+	m_foreground.SetRect(sc, 0, sc + 1920, 1080);
 	m_foreground.Draw();
 }

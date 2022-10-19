@@ -2,7 +2,7 @@
 #include <GLLibrary.h>
 
 //!アニメーションの種類
-enum  {
+enum {
 	eAnimIdle = 0,
 	eAnimRun,
 	eAnimJumpUp,
@@ -11,6 +11,7 @@ enum  {
 	eAnimAttackArrow,
 	eAnimDamage,
 	eAnimDown,
+	eAnimAttack03,
 };
 //プレイヤーのアニメーションデータ
 extern TexAnimData player_anim_data[];

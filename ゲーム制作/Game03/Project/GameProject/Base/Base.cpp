@@ -142,29 +142,6 @@ void Base::DrawRect()
 	
 }
 
-bool Base::CollisionRect(Base* b1, Base* b2)
-{
-	//b1‚Ì‹éŒ`
-	CRect rect1 = CRect(
-		b1->m_pos.x + b1->m_rect.m_left,
-		b1->m_pos.y + b1->m_rect.m_top,
-		b1->m_pos.x + b1->m_rect.m_right,
-		b1->m_pos.y + b1->m_rect.m_bottom);
-	//b2‚Ì‹éŒ`
-	CRect rect2 = CRect(
-		b2->m_pos.x + b2->m_rect.m_left,
-		b2->m_pos.y + b2->m_rect.m_top,
-		b2->m_pos.x + b2->m_rect.m_right,
-		b2->m_pos.y + b2->m_rect.m_bottom);
-
-	//‹éŒ`“¯Žm‚Ì”»’è
-	if (rect1.m_left <= rect2.m_right && rect1.m_right >= rect2.m_left &&
-		rect1.m_top <= rect2.m_bottom && rect1.m_bottom >= rect2.m_top)
-		return true;
-
-	return false;
-}
-
 std::list<Base*>Base::FindObjects(int type) {
 	std::list<Base*>ret;
 	for (auto& b : m_list) {
