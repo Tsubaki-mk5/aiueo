@@ -6,6 +6,7 @@ Bow::Bow(const CVector2D& pos,bool flip) :Base(eType_Bow)
 	m_img = COPY_RESOURCE("Bow", CImage);
 	m_pos = pos;
 	m_flip = flip;
+	m_cnt = 12;
 	m_img.SetSize(26, 54);
 	m_img.SetCenter(13, 27);
 }
@@ -13,7 +14,7 @@ Bow::Bow(const CVector2D& pos,bool flip) :Base(eType_Bow)
 void Bow::Update()
 {
 	m_img.UpdateAnimation();
-	if (m_img.CheckAnimationEnd()) {
+	if (--m_cnt<=0) {
 		SetKill();
 	}
 }

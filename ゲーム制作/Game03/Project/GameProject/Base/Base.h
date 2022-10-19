@@ -48,6 +48,8 @@ public:
 	static CVector2D GetScreenPos(const CVector2D& pos);
 	Base* Base::FindObject(int Type);
 	static std::list<Base*>FindObjects(int type);
+	//‹éŒ`“¯Žm‚Ì“–‚½‚è”»’è
+	static bool CollisionRect(Base* b1, Base* b2);
 	/// ‹éŒ`‚Ì•\Ž¦
 	void DrawRect();
 };

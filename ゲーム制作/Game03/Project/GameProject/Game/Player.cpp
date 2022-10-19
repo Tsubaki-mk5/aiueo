@@ -25,21 +25,22 @@ static TexAnim playerJumpDown[] = {
 	{ 3,4 },
 };
 static TexAnim playerAttackSword[] = {
-	{ 32,5 },
+	{ 32,4 },
+	{ 32,1 },
 	{ 33,5 },
 	{ 34,5 },
 	{ 35,5 },
 };
 static TexAnim playerAttackArrow[] = {
-	{ 21,6 },
+	{ 21,5 },
+	{ 21,1 },
 	{ 22,6 },
 	{ 23,6 },
 };
 static TexAnim playerDamage[] = {
-	{ 88,2 },
-	{ 89,2 },
-	{ 90,2 },
-	{ 91,2 },
+	{ 42,5 },
+	{ 43,5 },
+	{ 44,5 },
 };
 static TexAnim playerDown[] = {
 	{ 27,4 },
@@ -72,7 +73,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_is_ground;
 	m_attack_no = rand();
 	m_damage_no = -1;
-	m_hp = 1;
+	m_hp = 100;
 }
 
 void Player::StateIdle() {
@@ -126,7 +127,7 @@ void Player::StateIdle() {
 void Player::StateAttackSword()
 {
 	m_img.ChangeAnimation(eAnimAttackSword, false);
-	if (m_img.GetIndex() == 0) {
+	if (m_img.GetIndex() == 1) {
 		if (m_flip) {
 			Base::Add(new Sword(m_pos + CVector2D(-20, -30), m_flip, m_attack_no));
 		}
@@ -166,9 +167,8 @@ void Player::StateDamage() {
 
 void Player::StateDown() {
 	m_img.ChangeAnimation(eAnimDown, false);
-	if (m_img.CheckAnimationEnd()) {
-		m_kill = true;
-	}
+	//if (m_img.CheckAnimationEnd()) {
+	//}
 }
 
 void Player::Update() {
@@ -249,8 +249,16 @@ void Player::Collision(Base* b)
 		}
 		break;
 	case eType_Needle:
-		if (Needle* b = dynamic_cast<Needle*>(b)) {
-			
+		if (Needle* n = dynamic_cast<Needle*>(b)) {
+			if (Base::CollisionRect(this, n)) {
+				m_hp -= 30;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+			}
 		}
 		break;
 	}

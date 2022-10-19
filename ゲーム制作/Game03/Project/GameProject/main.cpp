@@ -68,6 +68,7 @@ void Init(void)
 	//ÉQÅ[ÉÄãNìÆéûÇ…àÍìxÇæÇØåƒÇŒÇÍÇÈ
 	//-----------------------------------------------------
 	ADD_RESOURCE("DOUKUTSU", CImage::CreateImage("Image/DOUKUTSU.png"));
+	ADD_RESOURCE("Foreground", CImage::CreateImage("Image/Foreground.png"));
 	ADD_RESOURCE("Boss", CImage::CreateImage("Image/Boldarch.png", Boss_anim_data, 104, 105));
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 64, 64));
 	ADD_RESOURCE("Sword", CImage::CreateImage("Image/Sword.png"));
@@ -76,8 +77,8 @@ void Init(void)
 	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
 
 
-	Base::Add(new Player(CVector2D(200, 800), true));
 	Base::Add(new Boss(CVector2D(1000, 700), true));
+	Base::Add(new Player(CVector2D(200, 800), true));
 	//Base::Add(new Title());
 	Base::Add(new Field());
 	Base::Add(new Needle(CVector2D(800,800)));

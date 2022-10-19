@@ -9,12 +9,22 @@ private:
 		eState_Damage,
 		eState_Down,
 	};
+	enum {
+		eAnimIdle = 0,
+		eAnimRun,
+		eAnimJumpUp,
+		eAnimJumpDown,
+		eAnimAttackSword,
+		eAnimAttackArrow,
+		eAnimDamage,
+		eAnimDown,
+	};
 	int m_state;
 	bool m_flip;
 	bool m_is_ground;
 	int m_attack_no;
 	int m_damage_no;
-	int m_hp = 1;
+	int m_hp = 100;
 
 	CImage m_img;
 
