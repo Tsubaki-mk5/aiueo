@@ -7,6 +7,7 @@ enum {
 	eType_Boss,
 	eType_Enemy,
 	eType_Player,
+	eType_Needle,
 	eType_Enemy_Attack,
 	eType_Bullet,
 	eType_Sword,
@@ -15,7 +16,6 @@ enum {
 	eType_Slash,
 	eType_Bow,
 	eType_Arrow,
-	eType_Needle,
 	eType_Thunder,
 	eType_Scene,
 };

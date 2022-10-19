@@ -5,6 +5,7 @@
 #include"Bow.h"
 #include "Field.h"
 #include"Needle.h"
+#include"Slash.h"
 
 static TexAnim playerIdle[] = {
 	{ 8,8 },
@@ -218,23 +219,22 @@ void Player::Collision(Base* b)
 		}
 		break;
 		//攻撃オブジェクトとの判定
+		*/
 	case eType_Enemy_Attack:
 		if (Slash* s = dynamic_cast<Slash*>(b)) {
 			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
 				//同じ攻撃の連続ダメージ防止
 				m_damage_no = s->GetAttackNo();
-				m_hp -= 50;
+				m_hp -= 30;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
 				else {
 					m_state = eState_Damage;
 				}
-				Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
 			}
 		}
 		break;
-		*/
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
 		if (Field* f = dynamic_cast<Field*>(b)) {
