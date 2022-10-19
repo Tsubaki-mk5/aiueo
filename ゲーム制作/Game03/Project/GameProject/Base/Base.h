@@ -14,6 +14,7 @@ enum {
 	eType_Bow,
 	eType_Arrow,
 	eType_Needle,
+	eType_Thunder,
 	eType_Scene,
 };
 //d—Í‰Á‘¬“x

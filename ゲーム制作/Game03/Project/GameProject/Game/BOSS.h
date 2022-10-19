@@ -3,7 +3,6 @@
 #include "HP.h"
 //ボスのアニメーションデータ
 extern TexAnimData Boss_anim_data[];
-
 class Boss : public Base {
 private:
 	enum {
@@ -26,6 +25,7 @@ private:
 	CImage m_img;
 	bool m_flip;
 	bool m_is_ground;
+	
 
 	void StateIdle();
 	void StateAttack();
