@@ -155,6 +155,7 @@ void Enemy::Draw() {
 	m_gauge.NowHp = m_hp;
 	m_gauge.Width = 200;
 	m_gauge.m_pos = m_pos;
+	m_gauge.m_img.SetCenter(50, 160);
 	m_gauge.Draw();
 }
 
