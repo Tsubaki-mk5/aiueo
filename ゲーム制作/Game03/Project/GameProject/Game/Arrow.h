@@ -11,7 +11,6 @@ public:
 	Arrow(const CVector2D& pos,bool flip,int attack_no);
 	void Update();
 	void Draw();
-	void Collision(Base* b);
 	int GetAttackNo() {
 		return m_attack_no;
 	}
