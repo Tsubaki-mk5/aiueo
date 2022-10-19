@@ -8,7 +8,6 @@ Needle::Needle(const CVector2D& pos) : Base(eType_Needle) {
 	m_img.SetSize(120,80);
 	m_img.SetCenter(0, 80);
 	m_rect = CRect(0, -80, 120, 0);
-	m_cnt = 15;
 }
 void Needle::Update() {
 }

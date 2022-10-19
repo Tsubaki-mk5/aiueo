@@ -43,8 +43,9 @@ static TexAnim playerDamage[] = {
 	{ 44,5 },
 };
 static TexAnim playerDown[] = {
-	{ 27,4 },
-	{ 36,4 },
+	{ 42,5 },
+	{ 43,5 },
+	{ 44,5 },
 	{ 45,4 },
 	{ 46,4 },
 	{ 47,4 },

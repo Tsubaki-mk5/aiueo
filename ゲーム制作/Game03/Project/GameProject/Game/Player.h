@@ -24,6 +24,7 @@ private:
 	bool m_is_ground;
 	int m_attack_no;
 	int m_damage_no;
+	int m_cnt;
 	int m_hp = 100;
 
 	CImage m_img;

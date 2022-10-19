@@ -4,7 +4,6 @@
 class Needle : public Base {
 private:
 	CImage m_img;
-	int m_cnt;
 
 public:
 	Needle(const CVector2D& pos);
