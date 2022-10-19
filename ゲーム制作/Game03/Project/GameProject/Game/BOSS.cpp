@@ -1,6 +1,7 @@
 #include "Boss.h"
 #include "AnimData.h"
 #include "Field.h"
+#include "Thunder.h"
 
 static TexAnim BossIdle[] = {
 	{ 0,8 },
@@ -65,6 +66,8 @@ void Boss::StateIdle()
 	float d = player->m_pos.x - m_pos.x;
 	if (abs(d) <= 1000)
 		m_state = eState_Attack;
+	Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(0, -128), m_flip));
+	
 }
 
 void Boss::StateAttack()
@@ -113,6 +116,7 @@ void Boss::Draw()
 	m_img.Draw();
 	DrawRect();
 
+	m_gauge.m_img.SetCenter(200, 400);
 	m_gauge.HpMax = 1000;
 	m_gauge.NowHp = m_hp;
 	m_gauge.Width = 200;

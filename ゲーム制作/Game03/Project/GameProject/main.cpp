@@ -14,6 +14,7 @@
 #include "Game/Enemy.h"
 //#include "Title/Title.h"
 #include "Game/HP.h"
+#include "Game/Thunder.h"
 
 //--------------------------------------------
 //ƒOƒ[ƒoƒ‹•Ï”—Ìˆæ
@@ -75,6 +76,8 @@ void Init(void)
 	ADD_RESOURCE("Arrow", CImage::CreateImage("Image/Arrow.png"));
 	ADD_RESOURCE("Bow", CImage::CreateImage("Image/Bow.png"));
 	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
+	ADD_RESOURCE("Effect_Thunder", CImage::CreateImage("Image/Thunder.png", effect_Thunder_anim_data, 100, 100));
+
 
 
 	Base::Add(new Boss(CVector2D(1000, 700), true));
