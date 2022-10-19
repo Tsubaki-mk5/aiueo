@@ -1,6 +1,6 @@
 #include "Slash.h"
 
-Slash::Slash(const CVector2D& pos, bool flip, int type, int attack_no) : Base(type)
+Slash::Slash(const CVector2D& pos, bool flip, int attack_no) : Base(eType_Slash)
 {
 	//âÊëúï°êª
 	m_img = COPY_RESOURCE("Effect_Slash", CImage);
