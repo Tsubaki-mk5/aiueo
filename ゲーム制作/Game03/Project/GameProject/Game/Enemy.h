@@ -13,6 +13,31 @@ private:
 		eState_Down,
 		eState_Wait,
 	};
+	enum {
+		eAnimIdle = 0,
+		eAnimRun,
+		eAnimJumpUp,
+		eAnimJumpDown,
+		eAnimAttackSword,
+		eAnimAttackArrow,
+		eAnimAttack03,
+		eAnimAttack01,
+		eAnimAttack01End,
+		eAnimAttack03End,
+		eAnimDamage,
+		eAnimDeath,
+		eAnimDown,
+		eAnimWakeUp,
+		eAnimGuard,
+		eAnimGuardEnd,
+		eAnimCrash,
+		eAnimCrashEnd,
+		eAnimExtAttack01,
+		eAnimExtAttack01End,
+		eAnimExtAttack02,
+		eAnimExtAttack02End,
+		eAnimStep,
+	};
 	//èÛë‘ïœêî
 	int m_state;
 	int m_cnt;
