@@ -38,8 +38,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_pos = p;
 	m_img.SetCenter(400,400 );
 	m_img.SetSize(500, 500);
-	m_rad = 300;
-	m_rect = CRect(-32, -128, 32, 0);
+	m_rad = 270;
 	m_flip = flip;
 	m_is_ground = false;
 	m_state = eState_Idle;
@@ -66,7 +65,7 @@ void Boss::StateIdle()
 	float d = player->m_pos.x - m_pos.x;
 	if (abs(d) <= 1000)
 		m_state = eState_Attack;
-	Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(0, -128), m_flip));
+	Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-750, -300), m_flip));
 	
 }
 
