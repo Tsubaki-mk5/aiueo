@@ -20,6 +20,7 @@ Thunder::Thunder(const char* name, const CVector2D& pos, bool flip) : Base(eType
 	m_img.SetSize(600, 600);
 	m_img.SetCenter(64, 64);
 	m_img.ChangeAnimation(0, false);
+	m_rad = 150;
 	m_flip = flip;
 }
 

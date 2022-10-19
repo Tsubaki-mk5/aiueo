@@ -2,6 +2,7 @@
 #include "AnimData.h"
 #include "Field.h"
 #include "Thunder.h"
+#include "Arrow.h"
 
 static TexAnim BossIdle[] = {
 	{ 0,8 },
@@ -15,10 +16,50 @@ static TexAnim BossIdle[] = {
 };
 
 static TexAnim BossAttack[] = {
-	{ 8,15 },
-	{ 9,15 },
-	{ 10,15 },
-	{ 11,15 },
+	{ 8,20 },
+	{ 9,20 },
+	{ 10,20 },
+	{ 11,20 },
+	{ 0,8 },
+	{ 1,8 },
+	{ 2,8 },
+	{ 3,8 },
+	{ 4,8 },
+	{ 5,8 },
+	{ 6,8 },
+	{ 7,8 },
+	{ 0,8 },
+	{ 1,8 },
+	{ 2,8 },
+	{ 3,8 },
+	{ 4,8 },
+	{ 5,8 },
+	{ 6,8 },
+	{ 7,8 },
+	{ 0,8 },
+	{ 1,8 },
+	{ 2,8 },
+	{ 3,8 },
+	{ 4,8 },
+	{ 5,8 },
+	{ 6,8 },
+	{ 7,8 },
+	{ 0,8 },
+	{ 1,8 },
+	{ 2,8 },
+	{ 3,8 },
+	{ 4,8 },
+	{ 5,8 },
+	{ 6,8 },
+	{ 7,8 },
+	{ 0,8 },
+	{ 1,8 },
+	{ 2,8 },
+	{ 3,8 },
+	{ 4,8 },
+	{ 5,8 },
+	{ 6,8 },
+	{ 7,8 },
 };
 static TexAnim BossDamage[] = {
 	{ 12,5 },
@@ -36,7 +77,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_img = COPY_RESOURCE("Boss", CImage);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
-	m_img.SetCenter(400,400 );
+	m_img.SetCenter(480,480 );
 	m_img.SetSize(500, 500);
 	m_rad = 270;
 	m_flip = flip;
@@ -66,7 +107,6 @@ void Boss::StateIdle()
 	if (abs(d) <= 1000)
 		m_state = eState_Attack;
 	Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-750, -300), m_flip));
-	
 }
 
 void Boss::StateAttack()
@@ -75,6 +115,7 @@ void Boss::StateAttack()
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
+	
 }
 void Boss::StateDamage()
 {
@@ -126,6 +167,23 @@ void Boss::Draw()
 void Boss::Collision(Base* b)
 {
 	switch (b->m_type) {
+	case eType_Arrow:
+		//Slashå^Ç÷ÉLÉÉÉXÉgÅAå^ïœä∑Ç≈Ç´ÇΩÇÁ
+		if (Arrow* s = dynamic_cast<Arrow*>(b)) {
+			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
+				//ìØÇ∂çUåÇÇÃòAë±É_ÉÅÅ[ÉWñhé~
+				m_damage_no = s->GetAttackNo();
+				m_hp -= 50;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+			}
+		}
+		break;
+
 	case eType_Field:
 		if (Field* f = dynamic_cast<Field*>(b)) {
 			if (m_pos.y > f->GetGroundY()) {
