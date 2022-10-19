@@ -5,19 +5,20 @@
 #include "Sword.h"
 #include "Arrow.h"
 #include "AnimData.h"
+#include "Effect.h"
 
 static TexAnim enemyIdle[] = {
-	{ 5,8 },
-	{ 4,8 },
-	{ 3,8 },
-	{ 2,8 },
+	{ 0,7 },
+	{ 1,7 },
+	{ 2,7 },
+	{ 3,7 },
 };
 static TexAnim enemyRun[] = {
-	{ 11,6 },
-	{ 10,6 },
-	{ 9,6 },
-	{ 8,6 },
-	//{ 11,6 },
+	{ 6,7 },
+	{ 7,7 },
+	{ 8,7 },
+	{ 9,7 },
+	{ 10,7 },
 
 };
 static TexAnim enemyJumpUp[] = {
@@ -30,11 +31,11 @@ static TexAnim enemyJumpDown[] = {
 };
 
 static TexAnim enemyAttack01[] = {
-	{ 21,6 },
-	{ 20,6 },
-	{ 19,6 },
-	{ 18,6 },
-	{ 17,6 },
+	{ 12,6 },
+	{ 13,6 },
+	{ 14,6 },
+	{ 15,6 },
+	{ 16,6 },
 };
 static TexAnim enemyAttack01End[] = {
 	{ 5,8 },
@@ -55,12 +56,12 @@ static TexAnim enemyAttack03End[] = {
 	{ 0,0 },
 };
 static TexAnim enemyDamage[] = {
-	{ 23,6 },
-	{ 22,6 },
+	{ 18,6 },
+	{ 19,6 },
 };
 static TexAnim enemyDamageEnd[] = {
-	{ 30,6 },
-	{ 29,6 },
+	{ 24,6 },
+	{ 25,6 },
 };
 static TexAnim enemyDeath[] = {
 	{ 96,4 },
@@ -74,11 +75,8 @@ static TexAnim enemyDeath[] = {
 };
 
 static TexAnim enemyDown[] = {
-	{ 104,4 },
-	{ 105,4 },
-	{ 106,4 },
-	{ 107,4 },
-	{ 108,4 },
+	{ 30,6 },
+	{ 29,6 },
 };
 
 
@@ -101,13 +99,13 @@ TexAnimData enemy_anim_data[] = {
 };
 
 Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
-	m_img.Load("Image/Enemy1.png", enemy_anim_data, 100, 100);
+	m_img.Load("Image/Enemy1.png", enemy_anim_data, 96, 96);
 	m_rad = 16;
 	m_img.SetSize(151, 151);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
 	m_img.SetCenter(68, 150);
-	m_rect = CRect(-41, -111, 41, 0);
+	m_rect = CRect(-41, -150, 41, 0);
 	m_flip = flip;
 
 	m_state = eState_Idle;
@@ -122,7 +120,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
 
 void Enemy::StateIdle() {
 
-	const float move_speed = 3;
+	const float move_speed = 10;
 	bool move_flag = false;
 	const float jump_pow = 12;
 	Base* player = Base::FindObject(eType_Player);
@@ -130,14 +128,14 @@ void Enemy::StateIdle() {
 	if (player) {
 
 		//左移動
-		if (player->m_pos.x < m_pos.x - 64) {
-			m_pos.x += -move_speed;
-			m_flip = true;
+		if (player->m_pos.x > m_pos.x - 64) {
+			m_pos.x += move_speed;
+			m_flip = false;
 			move_flag = true;
 		}
 		//右移動
-		if (player->m_pos.x > m_pos.x + 64) {
-			m_pos.x += move_speed;
+		if (player->m_pos.x < m_pos.x + 64) {
+			m_pos.x += -move_speed;
 			m_flip = false;
 			move_flag = true;
 		}
@@ -149,16 +147,13 @@ void Enemy::StateIdle() {
 	}
 
 	if (move_flag) {
-		//走るアニメーション
 		m_img.ChangeAnimation(eAnimRun, false);
+
 	}else{
-			//待機アニメーション
 			m_img.ChangeAnimation(eAnimIdle, false);
 		}
 
-		//カウント0で待機状態へ
 		if (--m_cnt <= 0) {
-			//待機時間3秒～5秒
 			m_cnt = rand() % 120 + 180;
 			m_state = eState_Wait;
 		}
@@ -177,13 +172,24 @@ void Enemy::StateWait() {
 }
 
 void Enemy::StateAttack() {
-	m_img.ChangeAnimation(eAnimAttack03, false);
+	m_img.ChangeAnimation(eAnimAttack01, false);
+	m_img.ChangeAnimation(eAnimAttackSword, false);
+	if (m_img.GetIndex() == 1) {
+		if (m_flip) {
+			Base::Add(new Slash(m_pos + CVector2D(-20, -30), m_flip, m_attack_no));
+		}
+		else {
+			Base::Add(new Slash(m_pos + CVector2D(20, -30), m_flip, m_attack_no));
+		}
+	}
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
+
 	}
 }
 
 void Enemy::StateDamage() {
+	if (m_damage_no)
 	m_img.ChangeAnimation(eAnimDamage, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
@@ -192,13 +198,13 @@ void Enemy::StateDamage() {
 }
 
 void Enemy::StateDown() {
+	m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
+		//Base::Add(new Effect("Effect_Smoke", m_pos + CVector2D(0, 0), m_flip));
 		m_kill = true;
 	}
 
 }
-
-
 void Enemy::Update() {
 	switch (m_state) {
 	case eState_Idle:
@@ -264,6 +270,7 @@ void Enemy::Collision(Base* b) {
 				else {
 					m_state = eState_Damage;
 				}
+				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
 			}
 		}
 		break;
