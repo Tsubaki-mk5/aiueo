@@ -130,7 +130,7 @@ void Enemy::StateIdle() {
 		//¶ˆÚ“®
 		if (player->m_pos.x > m_pos.x - 64) {
 			m_pos.x += move_speed;
-			m_flip = false;
+			m_flip = true;
 			move_flag = true;
 		}
 		//‰EˆÚ“®
@@ -173,7 +173,6 @@ void Enemy::StateWait() {
 
 void Enemy::StateAttack() {
 	m_img.ChangeAnimation(eAnimAttack01, false);
-	m_img.ChangeAnimation(eAnimAttackSword, false);
 	if (m_img.GetIndex() == 1) {
 		if (m_flip) {
 			Base::Add(new Slash(m_pos + CVector2D(-20, -30), m_flip, m_attack_no));
@@ -248,12 +247,13 @@ void Enemy::Draw() {
 	m_img.Draw();
 	//“–‚½‚è”»’è‹éŒ`‚Ì•\Ž¦
 	DrawRect();
+	/*
 	m_gauge.HpMax = 1000;
 	m_gauge.NowHp = m_hp;
 	m_gauge.Width = 200;
 	m_gauge.m_pos = m_pos;
 	m_gauge.m_img.SetCenter(50, 160);
-	m_gauge.Draw();
+	m_gauge.Draw();*/
 }
 
 void Enemy::Collision(Base* b) {
