@@ -53,7 +53,7 @@ private:
 	int m_damage_no;
 	//ヒットポイント
 	int m_hp;
-	HP m_gauge;
+	//HP m_gauge;
 
 	//各状態での挙動
 	void StateIdle();
