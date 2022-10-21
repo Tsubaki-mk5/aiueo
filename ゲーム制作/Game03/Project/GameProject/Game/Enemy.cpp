@@ -14,12 +14,11 @@ static TexAnim enemyIdle[] = {
 	{ 3,7 },
 };
 static TexAnim enemyRun[] = {
-	{ 6,7 },
-	{ 7,7 },
-	{ 8,7 },
-	{ 9,7 },
-	{ 10,7 },
-
+	{ 6,8 },
+	{ 7,8 },
+	{ 8,8 },
+	{ 9,8 },
+	{ 10,8 },
 };
 static TexAnim enemyJumpUp[] = {
 	{ 35,6 },
@@ -31,11 +30,11 @@ static TexAnim enemyJumpDown[] = {
 };
 
 static TexAnim enemyAttack01[] = {
-	{ 12,6 },
-	{ 13,6 },
-	{ 14,6 },
-	{ 15,6 },
-	{ 16,6 },
+	{ 12,5 },
+	{ 13,5 },
+	{ 14,5 },
+	{ 15,5 },
+	{ 16,5 },
 };
 static TexAnim enemyAttack01End[] = {
 	{ 5,8 },
@@ -60,8 +59,8 @@ static TexAnim enemyDamage[] = {
 	{ 19,6 },
 };
 static TexAnim enemyDamageEnd[] = {
-	{ 24,6 },
-	{ 25,6 },
+	{ 18,6 },
+	{ 19,6 },
 };
 static TexAnim enemyDeath[] = {
 	{ 96,4 },
@@ -99,13 +98,13 @@ TexAnimData enemy_anim_data[] = {
 };
 
 Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
-	m_img.Load("Image/Enemy1.png", enemy_anim_data, 96, 96);
+	m_img.Load("Image/Enemy1.png", enemy_anim_data, 96, 100);
 	m_rad = 16;
-	m_img.SetSize(151, 151);
+	m_img.SetSize(160, 160);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
-	m_img.SetCenter(68, 150);
-	m_rect = CRect(-41, -150, 41, 0);
+	m_img.SetCenter(100, 150);
+	m_rect = CRect(-41, -100, 41, 0);
 	m_flip = flip;
 
 	m_state = eState_Idle;
@@ -120,7 +119,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
 
 void Enemy::StateIdle() {
 
-	const float move_speed = 10;
+	const float move_speed = 3;
 	bool move_flag = false;
 	const float jump_pow = 12;
 	Base* player = Base::FindObject(eType_Player);
@@ -138,21 +137,20 @@ void Enemy::StateIdle() {
 			m_pos.x += -move_speed;
 			m_flip = false;
 			move_flag = true;
-		}
+		}/*
 		else {
 			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;
-		}
+		}*/
 	}
 
-	if (move_flag) {
-		m_img.ChangeAnimation(eAnimRun, false);
-
-	}else{
-			m_img.ChangeAnimation(eAnimIdle, false);
+		if (move_flag) {
+			m_img.ChangeAnimation(eAnimRun);
 		}
-
+		else {
+			m_img.ChangeAnimation(eAnimIdle);
+		}
 		if (--m_cnt <= 0) {
 			m_cnt = rand() % 120 + 180;
 			m_state = eState_Wait;
@@ -175,10 +173,10 @@ void Enemy::StateAttack() {
 	m_img.ChangeAnimation(eAnimAttack01, false);
 	if (m_img.GetIndex() == 1) {
 		if (m_flip) {
-			Base::Add(new Slash(m_pos + CVector2D(-20, -30), m_flip, m_attack_no));
+			Base::Add(new Slash(m_pos + CVector2D(0, 0), m_flip, m_attack_no));
 		}
 		else {
-			Base::Add(new Slash(m_pos + CVector2D(20, -30), m_flip, m_attack_no));
+			Base::Add(new Slash(m_pos + CVector2D(0, 0), m_flip, m_attack_no));
 		}
 	}
 	if (m_img.CheckAnimationEnd()) {
@@ -197,12 +195,16 @@ void Enemy::StateDamage() {
 }
 
 void Enemy::StateDown() {
+	/*
 	m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
 		//Base::Add(new Effect("Effect_Smoke", m_pos + CVector2D(0, 0), m_flip));
 		m_kill = true;
+	}*/
+	m_img.ChangeAnimation(eAnimDamage, false);
+	if (m_hp <= 0) {
+		m_kill = true;
 	}
-
 }
 void Enemy::Update() {
 	switch (m_state) {
@@ -228,8 +230,6 @@ void Enemy::Update() {
 	//重力による落下
 	m_vec.y += GRAVITY;
 	m_pos += m_vec;
-
-
 	//アニメーション更新
 	m_img.UpdateAnimation();
 	//スクロール設定
@@ -239,13 +239,9 @@ void Enemy::Update() {
 }
 
 void Enemy::Draw() {
-	//位置設定
 	m_img.SetPos(GetScreenPos(m_pos));
-	//反転設定
 	m_img.SetFlipH(m_flip);
-	//描画
 	m_img.Draw();
-	//当たり判定矩形の表示
 	DrawRect();
 	/*
 	m_gauge.HpMax = 1000;
