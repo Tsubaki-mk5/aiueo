@@ -6,4 +6,6 @@ public:
 	Game();
 	~Game();
 	void Update();
+	CImage m_img;
+	void Draw();
 };

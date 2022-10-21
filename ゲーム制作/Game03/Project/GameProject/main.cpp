@@ -78,6 +78,8 @@ void Init(void)
 	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
 	ADD_RESOURCE("Effect_Thunder", CImage::CreateImage("Image/Thunder.png", effect_Thunder_anim_data, 100, 100));
 	ADD_RESOURCE("Title", CImage::CreateImage("Image/Title.png"));
+	ADD_RESOURCE("GameOver", CImage::CreateImage("Image/GameOver.png"));
+	ADD_RESOURCE("GameClear", CImage::CreateImage("Image/GameClear.png"));
 
 	SOUND("SENTOU_BGM")->Load("Sound/BGM/SENTOU_BGM.wav", 1);
 	SOUND("SENTOU_BGM")->Play(true);
