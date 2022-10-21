@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "../Base/Base.h"
 #include "HP.h"
 class Enemy : public Base {
@@ -16,27 +15,12 @@ private:
 	enum {
 		eAnimIdle = 0,
 		eAnimRun,
-		eAnimJumpUp,
-		eAnimJumpDown,
 		eAnimAttackSword,
 		eAnimAttackArrow,
-		eAnimAttack03,
 		eAnimAttack01,
 		eAnimAttack01End,
-		eAnimAttack03End,
 		eAnimDamage,
-		eAnimDeath,
 		eAnimDown,
-		eAnimWakeUp,
-		eAnimGuard,
-		eAnimGuardEnd,
-		eAnimCrash,
-		eAnimCrashEnd,
-		eAnimExtAttack01,
-		eAnimExtAttack01End,
-		eAnimExtAttack02,
-		eAnimExtAttack02End,
-		eAnimStep,
 	};
 	//状態変数
 	int m_state;
@@ -54,7 +38,6 @@ private:
 	//ヒットポイント
 	int m_hp;
 	//HP m_gauge;
-
 	//各状態での挙動
 	void StateIdle();
 	void StateAttack();

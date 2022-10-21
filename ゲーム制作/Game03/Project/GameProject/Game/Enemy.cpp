@@ -30,17 +30,17 @@ static TexAnim enemyJumpDown[] = {
 };
 
 static TexAnim enemyAttack01[] = {
-	{ 12,5 },
-	{ 13,5 },
-	{ 14,5 },
-	{ 15,5 },
-	{ 16,5 },
+	{ 12,6 },
+	{ 13,6 },
+	{ 14,6 },
+	{ 15,6 },
+	{ 16,6 },
 };
 static TexAnim enemyAttack01End[] = {
-	{ 5,8 },
-	{ 4,8 },
-	{ 3,8 },
-	{ 2,8 },
+	{ 0,7 },
+	{ 1,7 },
+	{ 2,7 },
+	{ 3,7 },
 };
 static TexAnim enemyAttack02[] = {
 	{ 0,0 },
@@ -99,18 +99,14 @@ TexAnimData enemy_anim_data[] = {
 
 Enemy::Enemy(const CVector2D& p, bool flip) : Base(eType_Enemy) {
 	m_img.Load("Image/Enemy1.png", enemy_anim_data, 96, 100);
-	m_rad = 16;
 	m_img.SetSize(160, 160);
 	m_img.ChangeAnimation(0);
 	m_pos = p;
 	m_img.SetCenter(100, 150);
 	m_rect = CRect(-41, -100, 41, 0);
 	m_flip = flip;
-
 	m_state = eState_Idle;
-
-
-	m_is_ground = true;
+	m_is_ground;
 	m_attack_no = rand();
 	m_damage_no = (0);
 	m_hp = 200;
@@ -121,30 +117,25 @@ void Enemy::StateIdle() {
 
 	const float move_speed = 3;
 	bool move_flag = false;
-	const float jump_pow = 12;
+	//const float jump_pow = 12;
 	Base* player = Base::FindObject(eType_Player);
 
 	if (player) {
 
-		//左移動
-		if (player->m_pos.x > m_pos.x - 64) {
+		if (player->m_pos.x > m_pos.x + 64) {
 			m_pos.x += move_speed;
 			m_flip = true;
 			move_flag = true;
 		}
-		//右移動
-		if (player->m_pos.x < m_pos.x + 64) {
+		if (player->m_pos.x < m_pos.x - 64) {
 			m_pos.x += -move_speed;
 			m_flip = false;
 			move_flag = true;
 		}
 		else {
-			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;
 		}
-	}
-
 		if (move_flag) {
 			m_img.ChangeAnimation(eAnimRun);
 		}
@@ -156,14 +147,12 @@ void Enemy::StateIdle() {
 			m_state = eState_Wait;
 		}
 	}
+}
 
 
 void Enemy::StateWait() {
-	//待機アニメーション
-	m_img.ChangeAnimation(eAnimIdle);
-	//カウント0で通常状態へ
+	m_img.ChangeAnimation(eAnimIdle, true);
 	if (--m_cnt <= 0) {
-		//待機時間3秒～5秒
 		m_cnt = rand() % 120 + 180;
 		m_state = eState_Idle;
 	}
@@ -171,20 +160,19 @@ void Enemy::StateWait() {
 
 void Enemy::StateAttack() {
 	m_img.ChangeAnimation(eAnimAttack01, false);
-		if (m_flip) {
-			Base::Add(new Slash(m_pos + CVector2D(10, -30), m_flip, eType_Enemy_Attack, m_attack_no));
+		if (m_flip, false) {
+			Base::Add(new Slash(m_pos + CVector2D(0, -50), m_flip, eType_Enemy_Attack, m_attack_no));
 		}
 		else {
-			Base::Add(new Slash(m_pos + CVector2D(10, -30), m_flip, eType_Enemy_Attack, m_attack_no));
+			Base::Add(new Slash(m_pos + CVector2D(0, -50), m_flip, eType_Enemy_Attack, m_attack_no));
 		}
-	if (m_img.CheckAnimationEnd()) {
-		m_state = eState_Idle;
-
-	}
-}
+		
+			if (m_img.CheckAnimationEnd()) {
+				m_state = eState_Idle;
+			}
+		}
 
 void Enemy::StateDamage() {
-	if (m_damage_no)
 	m_img.ChangeAnimation(eAnimDamage, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
