@@ -30,11 +30,12 @@ static TexAnim enemyJumpDown[] = {
 };
 
 static TexAnim enemyAttack01[] = {
-	{ 12,6 },
-	{ 13,6 },
-	{ 14,6 },
-	{ 15,6 },
-	{ 16,6 },
+	{ 12,1 },
+	{ 12,8 },
+	{ 13,9 },
+	{ 14,9 },
+	{ 15,9 },
+	{ 16,9 },
 };
 static TexAnim enemyAttack01End[] = {
 	{ 0,7 },
@@ -86,13 +87,9 @@ TexAnimData enemy_anim_data[] = {
 	ANIMDATA(enemyJumpDown),
 	ANIMDATA(enemyAttack01),
 	ANIMDATA(enemyAttack01End),
-	ANIMDATA(enemyAttack02),
-	ANIMDATA(enemyAttack02End),
-	ANIMDATA(enemyAttack03),
 	ANIMDATA(enemyAttack03End),
 	ANIMDATA(enemyDamage),
 	ANIMDATA(enemyDamageEnd),
-	ANIMDATA(enemyDeath),
 	ANIMDATA(enemyDown),
 	
 };
@@ -127,12 +124,14 @@ void Enemy::StateIdle() {
 			m_flip = true;
 			move_flag = true;
 		}
+		else
 		if (player->m_pos.x < m_pos.x - 64) {
 			m_pos.x += -move_speed;
 			m_flip = false;
 			move_flag = true;
 		}
 		else {
+
 			m_state = eState_Attack;
 			m_attack_no++;
 		}
@@ -150,36 +149,42 @@ void Enemy::StateIdle() {
 }
 
 
+
+
+void Enemy::StateAttack() {
+	if (--m_cnt <= 0) {
+		m_cnt = rand() % 30 + 15;
+		m_state = eState_Wait;
+	}
+	else {
+		m_img.ChangeAnimation(eAnimAttack01);
+		if (m_img.GetIndex() == 0) {
+
+			if (m_flip) {
+				Base::Add(new Slash(m_pos + CVector2D(0, -50), m_flip, eType_Enemy_Attack, m_attack_no));
+			}
+			else {
+				Base::Add(new Slash(m_pos + CVector2D(0, -50), m_flip, eType_Enemy_Attack, m_attack_no));
+			}
+		}
+		if (m_img.CheckAnimationEnd()) {
+			m_state = eState_Idle;
+		}
+	}
+}
+void Enemy::StateDamage() {
+	m_img.ChangeAnimation(eAnimDamage);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
+	}
+}
 void Enemy::StateWait() {
-	m_img.ChangeAnimation(eAnimIdle, true);
+	m_img.ChangeAnimation(eAnimIdle);
 	if (--m_cnt <= 0) {
 		m_cnt = rand() % 120 + 180;
 		m_state = eState_Idle;
 	}
 }
-
-void Enemy::StateAttack() {
-	m_img.ChangeAnimation(eAnimAttack01, false);
-		if (m_flip, false) {
-			Base::Add(new Slash(m_pos + CVector2D(0, -50), m_flip, eType_Enemy_Attack, m_attack_no));
-		}
-		else {
-			Base::Add(new Slash(m_pos + CVector2D(0, -50), m_flip, eType_Enemy_Attack, m_attack_no));
-		}
-		
-			if (m_img.CheckAnimationEnd()) {
-				m_state = eState_Idle;
-			}
-		}
-
-void Enemy::StateDamage() {
-	m_img.ChangeAnimation(eAnimDamage, false);
-	if (m_img.CheckAnimationEnd()) {
-		m_state = eState_Idle;
-	}
-
-}
-
 void Enemy::StateDown() {
 	/*
 	m_img.ChangeAnimation(eAnimDown, false);
@@ -187,7 +192,7 @@ void Enemy::StateDown() {
 		//Base::Add(new Effect("Effect_Smoke", m_pos + CVector2D(0, 0), m_flip));
 		m_kill = true;
 	}*/
-	m_img.ChangeAnimation(eAnimDamage, false);
+	m_img.ChangeAnimation(eAnimDamage);
 	if (m_hp <= 0) {
 		m_kill = true;
 	}
