@@ -22,9 +22,13 @@ Game::Game() :Base(eType_Scene)
 	Base::Add(new Enemy(CVector2D(1800, 500), true));
 	Base::Add(new Enemy(CVector2D(2100, 500), true));
 	Base::Add(new Enemy(CVector2D(2800, 500), true));
-	m_img = COPY_RESOURCE("GameOver", CImage);
-	m_img.SetSize(636, 144);
-	m_img.SetPos(660, 480);
+	m_img1 = COPY_RESOURCE("GameOver", CImage);
+	m_img1.SetSize(636, 144);
+	m_img1.SetPos(660, 480);
+
+	m_img2 = COPY_RESOURCE("GameClear", CImage);
+	m_img2.SetSize(712, 144);
+	m_img2.SetPos(640, 480);
 }
 Game::~Game()
 {
@@ -46,15 +50,13 @@ void Game::Update()
 
 void Game::Draw()
 {
-	if (!Base::FindObject(eType_Boss)) {
-		m_img = COPY_RESOURCE("GameClear", CImage);
-		m_img.SetSize(712, 144);
-		m_img.SetPos(660, 480);
-	}
 	if (Player* player = dynamic_cast<Player*>(Base::FindObject(eType_Player)))
 	{
 		if (player->GetState() == Player::eState_Down) {
-			m_img.Draw();
+			m_img1.Draw();
 		}
+	}
+	if (!Base::FindObject(eType_Boss)) {
+		m_img2.Draw();
 	}
 }

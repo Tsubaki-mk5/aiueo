@@ -6,6 +6,7 @@ public:
 	Game();
 	~Game();
 	void Update();
-	CImage m_img;
+	CImage m_img1;
+	CImage m_img2;
 	void Draw();
 };
