@@ -8,10 +8,14 @@
 
 Game::Game() :Base(eType_Scene)
 {
-	Base::Add(new Boss(CVector2D(1000, 700), true));
+	Base::Add(new Boss(CVector2D(5000, 700), true));
 	Base::Add(new Player(CVector2D(200, 800), true));
 	Base::Add(new Field());
 	Base::Add(new Needle(CVector2D(800, 800)));
+	Base::Add(new Needle(CVector2D(1200, 800)));
+	Base::Add(new Needle(CVector2D(1600, 800)));
+	Base::Add(new Needle(CVector2D(2000, 800)));
+	Base::Add(new Needle(CVector2D(2400, 800)));
 	Base::Add(new Enemy(CVector2D(1000, 50), true));
 	Base::Add(new Enemy(CVector2D(1800, 500), true));
 	Base::Add(new Enemy(CVector2D(2100, 500), true));
