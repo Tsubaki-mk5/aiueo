@@ -13,15 +13,16 @@ static TexAnim _effect_Thunder[] = {
 TexAnimData effect_Thunder_anim_data[] = {
 	ANIMDATA(_effect_Thunder),
 };
-Thunder::Thunder(const char* name, const CVector2D& pos, bool flip) : Base(eType_Thunder)
+Thunder::Thunder(const char* name, const CVector2D& pos, bool flip, int attack_no) : Base(eType_Thunder)
 {
 	m_img = COPY_RESOURCE(name, CImage);
 	m_pos = pos;
 	m_img.SetSize(600, 600);
-	m_img.SetCenter(64, 64);
+	m_img.SetCenter(300, 300);
 	m_img.ChangeAnimation(0, false);
-	m_rad = 150;
+	m_rect = CRect(-300, -300, 300, 300);
 	m_flip = flip;
+	m_attack_no = attack_no;
 }
 
 void Thunder::Update()

@@ -6,6 +6,7 @@
 #include "Field.h"
 #include"Needle.h"
 #include"Slash.h"
+#include"Thunder.h"
 
 static TexAnim playerIdle[] = {
 	{ 8,8 },
@@ -220,12 +221,27 @@ void Player::Collision(Base* b)
 		break;
 		//攻撃オブジェクトとの判定
 		*/
+	case eType_Thunder:
+		if (Thunder* t = dynamic_cast<Thunder*>(b)) {
+			if (m_damage_no != t->GetAttackNo() && Base::CollisionCircle(this, t)) {
+				//同じ攻撃の連続ダメージ防止
+				m_damage_no = t->GetAttackNo();
+				m_hp -= 40;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+			}
+		}
+		break;
 	case eType_Enemy_Attack:
 		if (Slash* s = dynamic_cast<Slash*>(b)) {
 			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
 				//同じ攻撃の連続ダメージ防止
 				m_damage_no = s->GetAttackNo();
-				m_hp -= 30;
+				m_hp -= 20;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
