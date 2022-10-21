@@ -8,7 +8,7 @@
 
 Game::Game() :Base(eType_Scene)
 {
-	Base::Add(new Boss(CVector2D(1000, 700), true));
+	Base::Add(new Boss(CVector2D(5000, 700), true));
 	Base::Add(new Player(CVector2D(200, 800), true));
 	Base::Add(new Field());
 	Base::Add(new Needle(CVector2D(800, 800)));
