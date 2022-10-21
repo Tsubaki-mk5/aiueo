@@ -107,7 +107,7 @@ void Boss::StateIdle()
 
 	float d = player->m_pos.x - m_pos.x;
 	if (abs(d) <= 1000) {
-		Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-750, -300), m_flip));
+		Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-750, -300), m_flip,m_attack_no));
 		m_state = eState_Attack;
 	}
 }
