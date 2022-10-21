@@ -16,6 +16,7 @@ Slash::Slash(const CVector2D& pos, bool flip, int type, int attack_no) : Base(ty
 void Slash::Update() {
 	m_img.UpdateAnimation();
 	if (m_img.CheckAnimationEnd()) {
+		SetKill();
 	}
 }
 
