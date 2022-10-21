@@ -53,14 +53,6 @@ static TexAnim BossAttack[] = {
 	{ 5,8 },
 	{ 6,8 },
 	{ 7,8 },
-	{ 0,8 },
-	{ 1,8 },
-	{ 2,8 },
-	{ 3,8 },
-	{ 4,8 },
-	{ 5,8 },
-	{ 6,8 },
-	{ 7,8 },
 };
 static TexAnim BossDamage[] = {
 	{ 17,7 },
@@ -93,7 +85,6 @@ void Boss::StateIdle()
 	const float move_speed = 0;
 	bool move_flag = false;
 	Base* player = Base::FindObject(eType_Player);
-	
 	if (player->m_pos.x < m_pos.x - 64) {
 		m_pos.x += -move_speed;
 		m_flip = false;
@@ -104,6 +95,7 @@ void Boss::StateIdle()
 		m_flip = true;
 		move_flag = true;
 	}
+	
 
 	float d = player->m_pos.x - m_pos.x;
 	if (abs(d) <= 1000) {
