@@ -79,8 +79,8 @@ void Init(void)
 	ADD_RESOURCE("Effect_Thunder", CImage::CreateImage("Image/Thunder.png", effect_Thunder_anim_data, 100, 100));
 	ADD_RESOURCE("Title", CImage::CreateImage("Image/Title.png"));
 
-	SOUND("í“¬‹È")->Load("Sound/BGM/í“¬‹È.mp3", 1);
-	SOUND("í“¬‹È")->Play(true);
+	SOUND("SENTOU_BGM")->Load("Sound/BGM/SENTOU_BGM.wav", 1);
+	SOUND("SENTOU_BGM")->Play(true);
 
 	Base::Add(new Title());
 }

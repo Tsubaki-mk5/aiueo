@@ -20,6 +20,9 @@ void Title::Update()
 	if (PUSH(CInput::eButton1)) {
 		SetKill();
 	}
+	if (SOUND("SENTOU_BGM")->CheckEnd(true)) {
+		SOUND("SENTOU_BGM")->Play(true);
+	}
 }
 
 void Title::Draw()
