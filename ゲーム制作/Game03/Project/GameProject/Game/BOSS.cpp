@@ -62,9 +62,9 @@ static TexAnim BossAttack[] = {
 	{ 7,8 },
 };
 static TexAnim BossDamage[] = {
-	{ 12,5 },
-	{ 13,5 },
-	{ 14,5 },
+	{ 12,10 },
+	{ 13,10 },
+	{ 14,10 },
 };
 
 TexAnimData Boss_anim_data[] = {
@@ -79,6 +79,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_pos = p;
 	m_img.SetCenter(480,480 );
 	m_img.SetSize(500, 500);
+	m_rect = CRect(-200, -250, 20, 0);
 	m_rad = 270;
 	m_flip = flip;
 	m_is_ground = false;
@@ -127,6 +128,7 @@ void Boss::StateDamage()
 }
 void Boss::StateDown()
 {
+	m_kill = true;
 }
 void Boss::Update()
 {
@@ -157,12 +159,12 @@ void Boss::Draw()
 	m_img.Draw();
 	DrawRect();
 
-	m_gauge.m_img.SetCenter(200, 400);
+	/*m_gauge.m_img.SetCenter(200, 400);
 	m_gauge.HpMax = 1000;
 	m_gauge.NowHp = m_hp;
 	m_gauge.Width = 200;
 	m_gauge.m_pos = m_pos;
-	m_gauge.Draw();
+	m_gauge.Draw();*/
 }
 
 void Boss::Collision(Base* b)
@@ -174,7 +176,7 @@ void Boss::Collision(Base* b)
 			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
 				//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
 				m_damage_no = s->GetAttackNo();
-				m_hp -= 50;
+				m_hp -= 20;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
