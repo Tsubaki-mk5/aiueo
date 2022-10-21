@@ -35,7 +35,7 @@ void Game::Update()
 	}
 
 	//プレイヤー死亡　ボタン１でゲームシーン終了
-	if (!Base::FindObject(eType_Player) && PUSH(CInput::eButton1)) {
+	if (!Base::FindObject(eType_Player)) {
 		SetKill();
 	}
 }
