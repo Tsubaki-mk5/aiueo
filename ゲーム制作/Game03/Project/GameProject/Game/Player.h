@@ -1,7 +1,7 @@
 #pragma once
 #include"../Base/Base.h"
 class Player :public Base {
-private:
+public:
 	enum {
 		eState_Idle,
 		eState_Attack_Sword,
@@ -9,6 +9,7 @@ private:
 		eState_Damage,
 		eState_Down,
 	};
+private:
 	enum {
 		eAnimIdle = 0,
 		eAnimRun,

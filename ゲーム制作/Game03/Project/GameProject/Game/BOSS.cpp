@@ -53,14 +53,6 @@ static TexAnim BossAttack[] = {
 	{ 5,8 },
 	{ 6,8 },
 	{ 7,8 },
-	{ 0,8 },
-	{ 1,8 },
-	{ 2,8 },
-	{ 3,8 },
-	{ 4,8 },
-	{ 5,8 },
-	{ 6,8 },
-	{ 7,8 },
 };
 static TexAnim BossDamage[] = {
 	{ 17,7 },
@@ -80,7 +72,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_pos = p;
 	m_img.SetCenter(480,480 );
 	m_img.SetSize(500, 500);
-	m_rect = CRect(-250, -250, 250, 0);
+	m_rect = CRect(-350, -250, 0, 0);
 	m_rad = 270;
 	m_flip = flip;
 	m_is_ground = false;
@@ -93,7 +85,6 @@ void Boss::StateIdle()
 	const float move_speed = 0;
 	bool move_flag = false;
 	Base* player = Base::FindObject(eType_Player);
-	
 	if (player->m_pos.x < m_pos.x - 64) {
 		m_pos.x += -move_speed;
 		m_flip = false;
@@ -104,10 +95,11 @@ void Boss::StateIdle()
 		m_flip = true;
 		move_flag = true;
 	}
+	
 
 	float d = player->m_pos.x - m_pos.x;
 	if (abs(d) <= 1000) {
-		Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-650, -90), m_flip,m_attack_no));
+		Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-650, -90), m_flip,m_attack_no++));
 		m_state = eState_Attack;
 	}
 }
