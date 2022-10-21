@@ -137,12 +137,12 @@ void Enemy::StateIdle() {
 			m_pos.x += -move_speed;
 			m_flip = false;
 			move_flag = true;
-		}/*
+		}
 		else {
 			//çUåÇèÛë‘Ç÷à⁄çs
 			m_state = eState_Attack;
 			m_attack_no++;
-		}*/
+		}
 	}
 
 		if (move_flag) {
@@ -171,14 +171,12 @@ void Enemy::StateWait() {
 
 void Enemy::StateAttack() {
 	m_img.ChangeAnimation(eAnimAttack01, false);
-	if (m_img.GetIndex() == 1) {
 		if (m_flip) {
-			Base::Add(new Slash(m_pos + CVector2D(0, 0), m_flip, m_attack_no));
+			Base::Add(new Slash(m_pos + CVector2D(10, -30), m_flip, eType_Enemy_Attack, m_attack_no));
 		}
 		else {
-			Base::Add(new Slash(m_pos + CVector2D(0, 0), m_flip, m_attack_no));
+			Base::Add(new Slash(m_pos + CVector2D(10, -30), m_flip, eType_Enemy_Attack, m_attack_no));
 		}
-	}
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 
