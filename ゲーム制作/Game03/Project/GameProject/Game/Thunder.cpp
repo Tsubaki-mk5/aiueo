@@ -20,7 +20,7 @@ Thunder::Thunder(const char* name, const CVector2D& pos, bool flip, int attack_n
 	m_img.SetSize(500, 500);
 	m_img.SetCenter(200, 200);
 	m_img.ChangeAnimation(0, false);
-	m_rect = CRect(-200, 500, 200, 0);
+	m_rect = CRect(-200, -200, 200, 200);
 	m_rad = 200;
 	m_flip = flip;
 	m_attack_no = attack_no;
