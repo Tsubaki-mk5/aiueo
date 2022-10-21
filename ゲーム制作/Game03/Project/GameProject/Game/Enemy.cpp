@@ -87,7 +87,6 @@ TexAnimData enemy_anim_data[] = {
 	ANIMDATA(enemyJumpDown),
 	ANIMDATA(enemyAttack01),
 	ANIMDATA(enemyAttack01End),
-	ANIMDATA(enemyAttack03End),
 	ANIMDATA(enemyDamage),
 	ANIMDATA(enemyDamageEnd),
 	ANIMDATA(enemyDown),
@@ -148,9 +147,6 @@ void Enemy::StateIdle() {
 	}
 }
 
-
-
-
 void Enemy::StateAttack() {
 	if (--m_cnt <= 0) {
 		m_cnt = rand() % 30 + 15;
@@ -173,13 +169,13 @@ void Enemy::StateAttack() {
 	}
 }
 void Enemy::StateDamage() {
-	m_img.ChangeAnimation(eAnimDamage);
+	m_img.ChangeAnimation(eAnimDamage, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
 }
 void Enemy::StateWait() {
-	m_img.ChangeAnimation(eAnimIdle);
+	m_img.ChangeAnimation(eAnimIdle, false);
 	if (--m_cnt <= 0) {
 		m_cnt = rand() % 120 + 180;
 		m_state = eState_Idle;
@@ -192,7 +188,7 @@ void Enemy::StateDown() {
 		//Base::Add(new Effect("Effect_Smoke", m_pos + CVector2D(0, 0), m_flip));
 		m_kill = true;
 	}*/
-	m_img.ChangeAnimation(eAnimDamage);
+	m_img.ChangeAnimation(eAnimDamage, false);
 	if (m_hp <= 0) {
 		m_kill = true;
 	}
