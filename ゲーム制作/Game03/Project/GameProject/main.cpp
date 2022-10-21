@@ -12,7 +12,7 @@
 #include "Game/BOSS.h"
 #include "Game/Field.h"
 #include "Game/Enemy.h"
-//#include "Title/Title.h"
+#include "Title/Title.h"
 #include "Game/HP.h"
 #include "Game/Thunder.h"
 
@@ -77,18 +77,9 @@ void Init(void)
 	ADD_RESOURCE("Bow", CImage::CreateImage("Image/Bow.png"));
 	ADD_RESOURCE("Needle", CImage::CreateImage("Image/Needle.png"));
 	ADD_RESOURCE("Effect_Thunder", CImage::CreateImage("Image/Thunder.png", effect_Thunder_anim_data, 100, 100));
+	ADD_RESOURCE("Title", CImage::CreateImage("Image/Title.png"));
 
-
-
-	Base::Add(new Boss(CVector2D(1000, 700), true));
-	Base::Add(new Player(CVector2D(200, 800), true));
-	//Base::Add(new Title());
-	Base::Add(new Field());
-	Base::Add(new Needle(CVector2D(800,800)));
-	Base::Add(new Enemy(CVector2D(1000, 50), true));
-	Base::Add(new Enemy(CVector2D(1800, 500), true));
-	Base::Add(new Enemy(CVector2D(2100, 500), true));
-	Base::Add(new Enemy(CVector2D(2800, 500), true));
+	Base::Add(new Title());
 }
 
 

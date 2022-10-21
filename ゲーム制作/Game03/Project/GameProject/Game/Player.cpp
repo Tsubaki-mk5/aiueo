@@ -222,10 +222,10 @@ void Player::Collision(Base* b)
 		//攻撃オブジェクトとの判定
 		*/
 	case eType_Thunder:
-		if (Thunder* t = dynamic_cast<Thunder*>(b)) {
-			if (m_damage_no != t->GetAttackNo() && Base::CollisionCircle(this, t)) {
+		if (Thunder* n = dynamic_cast<Thunder*>(b)) {
+			if (m_damage_no != n->GetAttackNo() && Base::CollisionRect(this, n)) {
 				//同じ攻撃の連続ダメージ防止
-				m_damage_no = t->GetAttackNo();
+				m_damage_no = n->GetAttackNo();
 				m_hp -= 40;
 				if (m_hp <= 0) {
 					m_state = eState_Down;

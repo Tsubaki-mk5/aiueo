@@ -17,10 +17,10 @@ Thunder::Thunder(const char* name, const CVector2D& pos, bool flip, int attack_n
 {
 	m_img = COPY_RESOURCE(name, CImage);
 	m_pos = pos;
-	m_img.SetSize(600, 600);
-	m_img.SetCenter(300, 300);
+	m_img.SetSize(3000, 3000);
+	m_img.SetCenter(1500, 1500);
 	m_img.ChangeAnimation(0, false);
-	m_rect = CRect(-300, -300, 300, 300);
+	m_rect = CRect(-1500, -1500, 1500, 1500);
 	m_flip = flip;
 	m_attack_no = attack_no;
 }
