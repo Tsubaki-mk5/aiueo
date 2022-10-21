@@ -26,6 +26,7 @@ private:
 	bool m_flip;
 	bool m_is_ground;
 	int m_damage_no;
+	int m_attack_no;
 
 	void StateIdle();
 	void StateAttack();
