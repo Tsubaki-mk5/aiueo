@@ -3,6 +3,7 @@
 #include "Field.h"
 #include "Thunder.h"
 #include "Arrow.h"
+#include "Sword.h"
 
 static TexAnim BossIdle[] = {
 	{ 0,8 },
@@ -62,9 +63,9 @@ static TexAnim BossAttack[] = {
 	{ 7,8 },
 };
 static TexAnim BossDamage[] = {
-	{ 12,10 },
-	{ 13,10 },
-	{ 14,10 },
+	{ 17,7 },
+	{ 18,7 },
+	{ 19,7 },
 };
 
 TexAnimData Boss_anim_data[] = {
@@ -79,7 +80,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_pos = p;
 	m_img.SetCenter(480,480 );
 	m_img.SetSize(500, 500);
-	m_rect = CRect(-200, -250, 20, 0);
+	m_rect = CRect(-400, -250, 400, 0);
 	m_rad = 270;
 	m_flip = flip;
 	m_is_ground = false;
@@ -176,7 +177,7 @@ void Boss::Collision(Base* b)
 			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
 				//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
 				m_damage_no = s->GetAttackNo();
-				m_hp -= 20;
+				m_hp -= 10;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
@@ -186,7 +187,22 @@ void Boss::Collision(Base* b)
 			}
 		}
 		break;
-
+	case eType_Sword:
+		//SlashŒ^‚ÖƒLƒƒƒXƒgAŒ^•ÏŠ·‚Å‚«‚½‚ç
+		if (Sword* s = dynamic_cast<Sword*>(b)) {
+			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
+				//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
+				m_damage_no = s->GetAttackNo();
+				m_hp -= 40;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+			}
+		}
+		break;
 	case eType_Field:
 		if (Field* f = dynamic_cast<Field*>(b)) {
 			if (m_pos.y > f->GetGroundY()) {
