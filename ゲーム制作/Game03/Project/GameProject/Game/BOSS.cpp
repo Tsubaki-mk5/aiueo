@@ -80,7 +80,7 @@ Boss::Boss(const CVector2D& p, bool flip) : Base(eType_Boss) {
 	m_pos = p;
 	m_img.SetCenter(480,480 );
 	m_img.SetSize(500, 500);
-	m_rect = CRect(-400, -250, 400, 0);
+	m_rect = CRect(-250, -250, 250, 0);
 	m_rad = 270;
 	m_flip = flip;
 	m_is_ground = false;
@@ -107,7 +107,7 @@ void Boss::StateIdle()
 
 	float d = player->m_pos.x - m_pos.x;
 	if (abs(d) <= 1000) {
-		Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-750, -300), m_flip,m_attack_no));
+		Base::Add(new Thunder("Effect_Thunder", m_pos + CVector2D(-650, -90), m_flip,m_attack_no));
 		m_state = eState_Attack;
 	}
 }
@@ -172,7 +172,6 @@ void Boss::Collision(Base* b)
 {
 	switch (b->m_type) {
 	case eType_Arrow:
-		//Slash型へキャスト、型変換できたら
 		if (Arrow* s = dynamic_cast<Arrow*>(b)) {
 			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
 				//同じ攻撃の連続ダメージ防止
