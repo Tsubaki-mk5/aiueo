@@ -85,6 +85,9 @@ void Boss::StateIdle()
 	const float move_speed = 0;
 	bool move_flag = false;
 	Base* player = Base::FindObject(eType_Player);
+	if (!player) {
+		return;
+	}
 	if (player->m_pos.x < m_pos.x - 64) {
 		m_pos.x += -move_speed;
 		m_flip = false;
