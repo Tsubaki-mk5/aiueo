@@ -16,7 +16,7 @@ Game::Game() :Base(eType_Scene)
 	Base::Add(new Needle(CVector2D(1600, 800)));
 	Base::Add(new Needle(CVector2D(2000, 800)));
 	Base::Add(new Needle(CVector2D(2400, 800)));
-	Base::Add(new Needle(CVector2D(2560, 800)));
+	Base::Add(new Needle(CVector2D(2600, 800)));
 
 	Base::Add(new Enemy(CVector2D(1000, 750), true));
 	Base::Add(new Enemy(CVector2D(1800, 750), true));
