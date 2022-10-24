@@ -33,3 +33,14 @@ void Arrow::Draw()
 	m_img.Draw();
 
 }
+
+void Arrow::Collision(Base* b)
+{
+	switch(b->m_type) {
+	case eType_Enemy:
+		if (Base::CollisionRect(this, b)) {
+			SetKill();
+		}
+		break;
+	}
+}

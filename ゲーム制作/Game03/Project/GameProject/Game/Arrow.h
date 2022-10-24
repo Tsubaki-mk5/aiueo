@@ -14,4 +14,5 @@ public:
 	int GetAttackNo() {
 		return m_attack_no;
 	}
+	void Collision(Base* b);
 };
