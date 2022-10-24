@@ -18,10 +18,25 @@ Game::Game() :Base(eType_Scene)
 	Base::Add(new Needle(CVector2D(2400, 800)));
 	Base::Add(new Needle(CVector2D(2560, 800)));
 
-	Base::Add(new Enemy(CVector2D(1000, 50), true));
-	Base::Add(new Enemy(CVector2D(1800, 500), true));
-	Base::Add(new Enemy(CVector2D(2100, 500), true));
-	Base::Add(new Enemy(CVector2D(2800, 500), true));
+	Base::Add(new Enemy(CVector2D(1000, 750), true));
+	Base::Add(new Enemy(CVector2D(1800, 750), true));
+	Base::Add(new Enemy(CVector2D(2100, 750), true));
+	Base::Add(new Enemy(CVector2D(2800, 750), true));
+
+	Base::Add(new Enemy(CVector2D(5100, 750), true));
+	Base::Add(new Enemy(CVector2D(5200, 750), true));
+	Base::Add(new Enemy(CVector2D(5300, 750), true));
+
+	Base::Add(new Enemy(CVector2D(6000, 750), true));
+	Base::Add(new Enemy(CVector2D(6100, 750), true));
+	Base::Add(new Enemy(CVector2D(6200, 750), true));
+
+	Base::Add(new Enemy(CVector2D(7000, 750), true));
+	Base::Add(new Enemy(CVector2D(7050, 750), true));
+	Base::Add(new Enemy(CVector2D(7100, 750), true));
+	Base::Add(new Enemy(CVector2D(7150, 750), true));
+	Base::Add(new Enemy(CVector2D(7200, 750), true));
+
 	m_img1 = COPY_RESOURCE("GameOver", CImage);
 	m_img1.SetSize(636, 144);
 	m_img1.SetPos(660, 480);
